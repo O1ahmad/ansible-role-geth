@@ -1,12 +1,66 @@
+---
+#######  Authentication setup #######
+
+- name: Create Geth user
+  user:
+    name: geth
+    comment: Geth client account
+    uid: 4040
+    group: admin
+  become: true
+
+- name: Ensure group Geth exists
+  group:
+    name: geth
+    state: present
+  become: true
+
+#######  Package installation #######
+
 - name: Add PPA for Ethereum
   apt_repository:
     repo: 'ppa:ethereum/ethereum'
-    state: present
+    state: absent
     update_cache: true
   become: true
+  when: install_type == "package"
 
 - name: Install geth package
   package:
     name: ethereum
-    state: present
+    state: absent
+  become: true
+  when: install_type == "package"
+
+#######  Source installation #######
+
+- name: Create installation directory
+  file:
+    path: "{{ install_dest }}"
+    state: directory
+    owner: geth
+    group: geth
+  become: true
+  when: install_type == "source"
+
+- name: Extract Geth source
+  unarchive:
+    src: "{{ install_src }}"
+    dest: "{{ install_dest }}"
+    owner: geth
+    group: geth
+    remote_src: true
+    extra_opts:
+      - --strip-components
+      - '1'
+  become: true
+  when: install_type == "source"
+
+- name: Create a symbolic link
+  file:
+    src: "{{ install_dest }}/geth"
+    dest: "/usr/local/bin/geth"
+    owner: geth
+    group: geth
+    state: link
   become: true

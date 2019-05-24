@@ -1,7 +1,16 @@
 ---
-- hosts: all
+
+- hosts: linux
+  vars:
+      install_type: source
+      install_dest: /usr/local/bin
   tasks:
     - debug: var=ansible_facts
 
+    # Variable setup
+    - name: Include OS-specific variables.
+      include_vars:
+        file: "../vars/{{ ansible_os_family|lower }}.yml"
+
     - name: Include installation tasks
-      include_tasks: "{{ ansible_os_family }}/install.yml"
+      include_tasks: "{{ ansible_os_family|lower }}/install.yml"

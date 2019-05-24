@@ -1,11 +1,26 @@
 ---
-- name: Ensure Homebrew parent directory has correct permissions (MacOS < 10.13).
-  file:
-    path: "/usr/local"
-    owner: root
-    state: directory
+- name: Tap ethereum formula repository
+  homebrew_tap:
+    name: ethereum/ethereum
+    state: absent
+  when: install_type == "package"
 
 - name: Install geth homebrew package
   homebrew:
     name: ethereum
-    state: present
+    state: absent
+  when: install_type == "package"
+
+  #######  Package installation #######
+
+- name: Extract Geth source
+  unarchive:
+    src: "{{ install_src }}"
+    dest: "{{ install_dest }}"
+    remote_src: true
+    extra_opts:
+      - --strip-components
+      - '1'
+  when: install_type == "source"
+
+  #######  Source installation #######
