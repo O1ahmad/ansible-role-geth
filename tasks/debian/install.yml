@@ -1,0 +1,12 @@
+- name: Add PPA for Ethereum
+  apt_repository:
+    repo: 'ppa:ethereum/ethereum'
+    state: present
+    update_cache: true
+  become: true
+
+- name: Install geth package
+  package:
+    name: ethereum
+    state: present
+  become: true
