@@ -1,15 +1,15 @@
 ---
 #######  Authentication setup #######
+- name: Ensure group Geth exists
+  group:
+    name: geth
+    state: present
+  become: true
+  
 - name: Create Geth user
   user:
     name: geth
     comment: Geth client account
     uid: 4040
-    group: admin
-  become: true
-
-- name: Ensure group Geth exists
-  group:
-    name: geth
-    state: present
+    group: geth
   become: true
