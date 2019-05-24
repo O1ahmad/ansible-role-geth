@@ -1,26 +1,10 @@
 ---
-#######  Authentication setup #######
-
-- name: Create Geth user
-  user:
-    name: geth
-    comment: Geth client account
-    uid: 4040
-    group: admin
-  become: true
-
-- name: Ensure group Geth exists
-  group:
-    name: geth
-    state: present
-  become: true
-
 #######  Package installation #######
 
 - name: Add PPA for Ethereum
   apt_repository:
     repo: 'ppa:ethereum/ethereum'
-    state: absent
+    state: present
     update_cache: true
   become: true
   when: install_type == "package"
@@ -28,7 +12,7 @@
 - name: Install geth package
   package:
     name: ethereum
-    state: absent
+    state: present
   become: true
   when: install_type == "package"
 
