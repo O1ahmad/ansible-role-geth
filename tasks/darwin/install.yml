@@ -1,0 +1,11 @@
+---
+- name: Ensure Homebrew parent directory has correct permissions (MacOS < 10.13).
+  file:
+    path: "/usr/local"
+    owner: root
+    state: directory
+
+- name: Install geth homebrew package
+  homebrew:
+    name: ethereum
+    state: present
