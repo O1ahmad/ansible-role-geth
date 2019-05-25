@@ -22,8 +22,8 @@
   file:
     path: "{{ install_dest }}"
     state: directory
-    owner: geth
-    group: geth
+    owner: "{{ geth_user }}"
+    group: "{{ geth_user }}"
   become: true
   when: install_type == "source"
 
@@ -31,8 +31,8 @@
   unarchive:
     src: "{{ install_src }}"
     dest: "{{ install_dest }}"
-    owner: geth
-    group: geth
+    owner: "{{ geth_user }}"
+    group: "{{ geth_user }}"
     remote_src: true
     extra_opts:
       - --strip-components
@@ -44,8 +44,8 @@
   file:
     src: "{{ install_dest }}/geth"
     dest: "/usr/local/bin/geth"
-    owner: geth
-    group: geth
+    owner: "{{ geth_user }}"
+    group: "{{ geth_user }}"
     state: link
   become: true
   when: install_type == "source"

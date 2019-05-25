@@ -2,3 +2,5 @@
 # defaults file for geth
 install_type: "package"
 install_state: "present"
+
+geth_user: "geth"

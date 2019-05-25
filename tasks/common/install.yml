@@ -1,15 +1,14 @@
 ---
 #######  Authentication setup #######
-- name: Ensure group Geth exists
+- name: Ensure Geth group exists
   group:
-    name: geth
+    name: "{{ geth_user }}"
     state: present
   become: true
   
 - name: Create Geth user
   user:
-    name: geth
     comment: Geth client account
-    uid: 4040
-    group: geth
+    name: "{{ geth_user }}"
+    group: "{{ geth_user }}"
   become: true
