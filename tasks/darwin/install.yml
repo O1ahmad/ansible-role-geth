@@ -2,13 +2,13 @@
 - name: Tap ethereum formula repository
   homebrew_tap:
     name: ethereum/ethereum
-    state: absent
+    state: "{{ install_state }}"
   when: install_type == "package"
 
 - name: Install geth homebrew package
   homebrew:
     name: ethereum
-    state: absent
+    state: "{{ install_state }}"
   when: install_type == "package"
 
   #######  Package installation #######
