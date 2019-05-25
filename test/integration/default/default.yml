@@ -1,0 +1,4 @@
+- name: playbook for kitchen testing
+  hosts: test-kitchen
+  roles:
+    - ansible-role-geth

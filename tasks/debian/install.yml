@@ -4,7 +4,7 @@
 - name: Add PPA for Ethereum
   apt_repository:
     repo: 'ppa:ethereum/ethereum'
-    state: present
+    state: "{{ install_state }}"
     update_cache: true
   become: true
   when: install_type == "package"
@@ -12,7 +12,7 @@
 - name: Install geth package
   package:
     name: ethereum
-    state: present
+    state: "{{ install_state }}"
   become: true
   when: install_type == "package"
 
@@ -48,3 +48,4 @@
     group: geth
     state: link
   become: true
+  when: install_type == "source"
