@@ -2,6 +2,9 @@
 driver:
   name: vagrant
 
+transport:
+  max_ssh_sessions: 6
+
 provisioner:
   hosts: test-kitchen
   name: ansible_playbook
@@ -15,8 +18,8 @@ verifier:
 
 platforms:
   # Redhat
-  # - name: centos-6
-  # - name: centos-7
+  - name: centos-6
+  - name: centos-7
   # - name: fedora-28
   # - name: fedora-29
   # Debian
@@ -29,7 +32,13 @@ platforms:
 suites:
   - name: install_package
     provisioner:
-      playbook: test/integration/install_package/install_package.yml
+      playbook: test/integration/install/install_package/default_playbook.yml
+    verifier:
+      inspec_tests:
+        - path: test/integration/install/install_package
   - name: install_source
     provisioner:
-      playbook: test/integration/install_source/install_source.yml
+      playbook: test/integration/install/install_source/default_playbook.yml
+    verifier:
+      inspec_tests:
+        - path: test/integration/install/install_source

@@ -3,8 +3,8 @@
 
 - name: Check install_type for unsupported package option
   fail:
-    msg: "Geth installation by OS system package is not supported on the Redhat family of OSes!"
-  when: ansible_os_family == "Redhat"
+    msg: "Geth installation by OS system package is not supported on {{ ansible_os_family }}!"
+  when: install_type == "package"
 
 #######  Source installation #######
 
@@ -23,6 +23,7 @@
     dest: "{{ install_dest }}"
     owner: "{{ geth_user }}"
     group: "{{ geth_user }}"
+    mode: "777"
     remote_src: true
     extra_opts:
       - --strip-components
@@ -30,12 +31,7 @@
   become: true
   when: install_type == "source"
 
-- name: Create a symbolic link
-  file:
-    src: "{{ install_dest }}/geth"
-    dest: "/usr/local/bin/geth"
-    owner: "{{ geth_user }}"
-    group: "{{ geth_user }}"
-    state: link
-  become: true
-  when: install_type == "source"
+- name: Add installation dir to system-wide $PATH
+  copy:
+    dest: /etc/profile.d/custom-path.sh
+    content: 'PATH=$PATH:{{ install_dest }}'
