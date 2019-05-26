@@ -3,4 +3,7 @@
 install_type: "package"
 install_state: "present"
 
+install_src: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.8.27-4bcc0a37.tar.gz
+install_dest: /opt/geth
+
 geth_user: "geth"

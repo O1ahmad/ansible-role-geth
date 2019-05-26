@@ -1,5 +1,14 @@
 ---
 #######  Package installation #######
+- name: Check install_type for unsupported package option
+  fail:
+    msg: "Geth installation by OS system package is not supported on {{ ansible_os_family }}!"
+  when: install_type == "package" and ansible_os_family == "Debian" and ansible_distribution != "Ubuntu"
+
+- name: Update apt cache.
+  apt: update_cache=yes cache_valid_time=86400
+  changed_when: false
+  when: install_type == "package"
 
 - name: Add PPA for Ethereum
   apt_repository:
@@ -7,7 +16,7 @@
     state: "{{ install_state }}"
     update_cache: true
   become: true
-  when: install_type == "package"
+  when: install_type == "package" and ansible_distribution == "Ubuntu"
 
 - name: Install geth package
   package:
@@ -40,12 +49,7 @@
   become: true
   when: install_type == "source"
 
-- name: Create a symbolic link
-  file:
-    src: "{{ install_dest }}/geth"
-    dest: "/usr/local/bin/geth"
-    owner: "{{ geth_user }}"
-    group: "{{ geth_user }}"
-    state: link
-  become: true
-  when: install_type == "source"
+- name: Add installation dir to system-wide $PATH
+  copy:
+    dest: /etc/profile.d/custom-path.sh
+    content: 'PATH=$PATH:{{ install_dest }}'

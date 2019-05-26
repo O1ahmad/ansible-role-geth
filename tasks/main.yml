@@ -2,6 +2,7 @@
 - name: Include OS-specific variables.
   include_vars:
     file: "{{ ansible_os_family|lower }}.yml"
+  when: ansible_os_family == "Darwin"
 
 - name: Include common installation tasks
   include_tasks: "common/install.yml"
