@@ -5,28 +5,31 @@ driver:
 provisioner:
   hosts: test-kitchen
   name: ansible_playbook
-  # Use el7 epel repo instead of the default el6
-  ansible_yum_repo: "https://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm"
   require_chef_for_busser: false
   require_ruby_for_busser: false
   ansible_verbosity: 2
   ansible_verbose: true
-  # starting playbook is at: test/integration/default/default.yml
 
 verifier:
   name: inspec
 
 platforms:
   # Redhat
-  - name: centos-6.10
-  - name: centos-7.6
-  - name: fedora-28
-  - name: fedora-29
+  # - name: centos-6
+  # - name: centos-7
+  # - name: fedora-28
+  # - name: fedora-29
   # Debian
+  - name: debian-8
+  - name: debian-9
   - name: ubuntu-14.04
   - name: ubuntu-16.04
   - name: ubuntu-18.04
-  - name: ubuntu-18.10
 
 suites:
-  - name: default
+  - name: install_package
+    provisioner:
+      playbook: test/integration/install_package/install_package.yml
+  - name: install_source
+    provisioner:
+      playbook: test/integration/install_source/install_source.yml

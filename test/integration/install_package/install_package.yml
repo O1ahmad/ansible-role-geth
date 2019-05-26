@@ -1,4 +1,4 @@
-- name: playbook for kitchen testing
+- name: playbook for installing Geth via OS system package managers
   hosts: test-kitchen
   roles:
     - ansible-role-geth

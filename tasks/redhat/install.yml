@@ -1,0 +1,41 @@
+---
+#######  Package installation #######
+
+- name: Check install_type for unsupported package option
+  fail:
+    msg: "Geth installation by OS system package is not supported on the Redhat family of OSes!"
+  when: ansible_os_family == "Redhat"
+
+#######  Source installation #######
+
+- name: Create installation directory
+  file:
+    path: "{{ install_dest }}"
+    state: directory
+    owner: "{{ geth_user }}"
+    group: "{{ geth_user }}"
+  become: true
+  when: install_type == "source"
+
+- name: Extract Geth source
+  unarchive:
+    src: "{{ install_src }}"
+    dest: "{{ install_dest }}"
+    owner: "{{ geth_user }}"
+    group: "{{ geth_user }}"
+    remote_src: true
+    extra_opts:
+      - --strip-components
+      - '1'
+  become: true
+  when: install_type == "source"
+
+- name: Create a symbolic link
+  file:
+    src: "{{ install_dest }}/geth"
+    dest: "/usr/local/bin/geth"
+    owner: "{{ geth_user }}"
+    group: "{{ geth_user }}"
+    state: link
+  become: true
+  when: install_type == "source"
