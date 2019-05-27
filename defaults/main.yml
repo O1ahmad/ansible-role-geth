@@ -7,3 +7,20 @@ install_src: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.8
 install_dest: /opt/geth
 
 geth_user: "geth"
+
+config_template: geth.toml.j2
+config_dir: /etc/geth
+
+geth_config:
+  Eth:
+    SyncMode: "fast"
+    LightPeers: 20
+  Eth.TxPool:
+    NoLocals: false
+  Eth.GP0:
+    Blocks: 10
+    Percentile: 50
+  Node:
+    DataDir: /var/geth
+  Node.P2P:
+    MaxPeers: 25
