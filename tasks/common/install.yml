@@ -15,7 +15,7 @@
 
 - name: Create data directory
   file:
-    path: "{{ data_dir }}"
+    path: "{{ geth_config.Node.DataDir }}"
     state: directory
     owner: "{{ geth_user }}"
     group: "{{ geth_user }}"

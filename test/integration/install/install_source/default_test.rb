@@ -1,13 +1,5 @@
 title "Geth source installation default test suite"
 
-describe user("geth") do
-  it { should exist }
-end
-
-describe group("geth") do
-  it { should exist }
-end
-
 describe file('/opt/geth/geth') do
   it { should exist }
 end
