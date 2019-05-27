@@ -1,4 +1,4 @@
-title "Geth source installation"
+title "Geth source installation default test suite"
 
 describe user("geth") do
   it { should exist }

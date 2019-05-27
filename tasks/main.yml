@@ -9,3 +9,6 @@
 
 - name: Include OS-specific installation tasks
   include_tasks: "{{ ansible_os_family|lower }}/install.yml"
+
+- name: Render geth client toml configuration
+  include_tasks: "common/config.yml"

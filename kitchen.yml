@@ -3,6 +3,8 @@ driver:
   name: vagrant
 
 transport:
+  # TODO: remove with better solution than workaround:
+  # https://github.com/test-kitchen/test-kitchen/issues/1035
   max_ssh_sessions: 6
 
 provisioner:
@@ -18,10 +20,9 @@ verifier:
 
 platforms:
   # Redhat
-  - name: centos-6
   - name: centos-7
-  # - name: fedora-28
-  # - name: fedora-29
+  - name: fedora-28
+  - name: fedora-29
   # Debian
   - name: debian-8
   - name: debian-9
@@ -42,3 +43,9 @@ suites:
     verifier:
       inspec_tests:
         - path: test/integration/install/install_source
+  - name: default_config
+    provisioner:
+      playbook: test/integration/config/default/default_playbook.yml
+    verifier:
+      inspec_tests:
+        - path: test/integration/config/default

@@ -1,0 +1,17 @@
+---
+# Geth configuration rendering
+- name: Create installation directory
+  file:
+    path: "{{ config_dir }}"
+    state: directory
+    owner: "{{ geth_user }}"
+    group: "{{ geth_user }}"
+  become: true
+
+- name: Copy Geth configuration in place
+  template:
+    src: "{{ config_template }}"
+    dest: "{{ config_dir }}/geth.toml"
+    owner: "{{ geth_user }}"
+    group: "{{ geth_user }}"
+    mode: 0644
