@@ -4,3 +4,4 @@
     - ansible-role-geth
   vars:
     install_type: source
+    geth_user: test

@@ -1,6 +1,0 @@
-- name: Default playbook for Geth client user setup
-  hosts: test-kitchen
-  roles:
-    - ansible-role-geth
-  vars:
-    install_type: source
