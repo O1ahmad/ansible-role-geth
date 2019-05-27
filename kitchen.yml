@@ -31,6 +31,12 @@ platforms:
   - name: ubuntu-18.04
 
 suites:
+  - name: user_setup
+    provisioner:
+      playbook: test/integration/install/user_setup/default_playbook.yml
+    verifier:
+      inspec_tests:
+        - path: test/integration/install/user_setup
   - name: install_package
     provisioner:
       playbook: test/integration/install/install_package/default_playbook.yml

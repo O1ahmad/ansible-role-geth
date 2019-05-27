@@ -10,16 +10,9 @@ geth_user: "geth"
 
 config_template: geth.toml.j2
 config_dir: /etc/geth
-data_dir: '"/var/geth"'
 
 geth_config:
   Eth:
     SyncMode: '"fast"'
-    LightPeers: 20
-  Eth.TxPool:
-    NoLocals: "false"
   Node:
-    DataDir: "{{ data_dir }}"
-    HTTPModules: '["net", "web3", "eth", "shh"]'
-  Node.P2P:
-    MaxPeers: 25
+    DataDir: '"/var/geth"'
