@@ -1,7 +1,0 @@
-{% for section in geth_config %}
-[{{ section }}]
-  {% for key, value in geth_config[section].iteritems() %}
-{{ key }} = {{ value }}
-  {% endfor %}
- 
-{% endfor %}

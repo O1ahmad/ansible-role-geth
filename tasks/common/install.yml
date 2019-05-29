@@ -13,10 +13,33 @@
     group: "{{ geth_user }}"
   become: true
 
-- name: Create data directory
+#######  Source installation #######
+- name: Create installation directory
   file:
-    path: "{{ geth_config.Node.DataDir }}"
+    path: "{{ install_dir }}"
     state: directory
     owner: "{{ geth_user }}"
     group: "{{ geth_user }}"
   become: true
+  when: install_type == "source"
+
+- name: Extract Geth source
+  unarchive:
+    src: "{{ install_src }}"
+    dest: "{{ install_dir }}"
+    owner: "{{ geth_user }}"
+    group: "{{ geth_user }}"
+    mode: '0775'
+    remote_src: true
+    extra_opts:
+      - --strip-components
+      - '1'
+  become: true
+  when: install_type == "source"
+
+- name: Add installation dir to system-wide $PATH
+  copy:
+    dest: /etc/profile.d/custom-path.sh
+    content: 'PATH=$PATH:{{ install_dir }}'
+  become: true
+  when: install_type == "source"

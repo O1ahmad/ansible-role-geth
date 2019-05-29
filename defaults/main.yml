@@ -1,18 +1,23 @@
 ---
 # defaults file for geth
-install_type: "package"
-install_state: "present"
+geth_user: geth
+
+install_type: package
+install_state: present
 
 install_src: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.8.27-4bcc0a37.tar.gz
-install_dest: /opt/geth
+install_dir: /opt/geth
 
-geth_user: "geth"
-
-config_template: geth.toml.j2
+config_template: config.toml.j2
 config_dir: /etc/geth
+
+data_dir: /var/geth
 
 geth_config:
   Eth:
     SyncMode: '"fast"'
   Node:
     DataDir: '"/var/geth"'
+
+systemd_template: geth.service.j2
+systemd_dir: /etc/systemd/system/

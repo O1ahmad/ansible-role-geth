@@ -1,3 +1,3 @@
 ---
 install_src: https://gethstore.blob.core.windows.net/builds/geth-darwin-amd64-1.8.27-4bcc0a37.tar.gz
-install_dest: /usr/local/bin
+install_dir: /usr/local/bin

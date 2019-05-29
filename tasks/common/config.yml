@@ -15,3 +15,11 @@
     owner: "{{ geth_user }}"
     group: "{{ geth_user }}"
     mode: 0644
+
+- name: Create data directory
+  file:
+    path: "{{ data_dir }}"
+    state: directory
+    owner: "{{ geth_user }}"
+    group: "{{ geth_user }}"
+  become: true

@@ -1,2 +1,2 @@
 install_src: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.8.26-cdae1c59.tar.gz
-install_dest: /opt/geth
+install_dir: /opt/geth

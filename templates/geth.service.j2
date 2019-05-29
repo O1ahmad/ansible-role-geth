@@ -1,0 +1,18 @@
+[Unit]
+Description=Ethereum go client
+After=syslog.target network.target
+
+[Service]
+User={{ geth_user }}
+Group={{ geth_user }}
+Environment=HOME=/home/geth
+Type=simple
+ExecStart={{ install_dir }}/geth --rpc  --rpcaddr="0.0.0.0" --config "{{ config_dir }}/config.toml"
+KillMode=process
+KillSignal=SIGINT
+TimeoutStopSec=90
+Restart=on-failure
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
