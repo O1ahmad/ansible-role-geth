@@ -1,4 +1,5 @@
 ---
+  #######  Package installation #######
 - name: Tap ethereum formula repository
   homebrew_tap:
     name: ethereum/ethereum
@@ -10,19 +11,3 @@
     name: ethereum
     state: "{{ install_state }}"
   when: install_type == "package"
-
-  #######  Package installation #######
-
-- name: Extract Geth source
-  unarchive:
-    src: "{{ install_src }}"
-    dest: "{{ install_dest }}"
-    owner: "{{ geth_user }}"
-    group: "{{ geth_user }}"
-    remote_src: true
-    extra_opts:
-      - --strip-components
-      - '1'
-  when: install_type == "source"
-
-  #######  Source installation #######

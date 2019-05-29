@@ -37,15 +37,32 @@ suites:
     verifier:
       inspec_tests:
         - path: test/integration/install/install_package
+    excludes:
+      # redhat & debian OS system packages are not available
+      # see: https://geth.ethereum.org/install-and-build/Installing-Geth
+      - centos-7
+      - fedora-28
+      - fedora-29
+      - debian-8
+      - debian-9
+
   - name: install_source
     provisioner:
       playbook: test/integration/install/install_source/default_playbook.yml
     verifier:
       inspec_tests:
         - path: test/integration/install/install_source
+
   - name: default_config
     provisioner:
-      playbook: test/integration/config/default/default_playbook.yml
+      playbook: test/integration/default_playbook.yml
     verifier:
       inspec_tests:
         - path: test/integration/config/default
+
+  - name: default_service
+    provisioner:
+      playbook: test/integration/default_playbook.yml
+    verifier:
+      inspec_tests:
+        - path: test/integration/service/default

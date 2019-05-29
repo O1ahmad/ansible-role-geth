@@ -24,32 +24,3 @@
     state: "{{ install_state }}"
   become: true
   when: install_type == "package"
-
-#######  Source installation #######
-
-- name: Create installation directory
-  file:
-    path: "{{ install_dest }}"
-    state: directory
-    owner: "{{ geth_user }}"
-    group: "{{ geth_user }}"
-  become: true
-  when: install_type == "source"
-
-- name: Extract Geth source
-  unarchive:
-    src: "{{ install_src }}"
-    dest: "{{ install_dest }}"
-    owner: "{{ geth_user }}"
-    group: "{{ geth_user }}"
-    remote_src: true
-    extra_opts:
-      - --strip-components
-      - '1'
-  become: true
-  when: install_type == "source"
-
-- name: Add installation dir to system-wide $PATH
-  copy:
-    dest: /etc/profile.d/custom-path.sh
-    content: 'PATH=$PATH:{{ install_dest }}'

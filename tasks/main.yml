@@ -12,3 +12,6 @@
 
 - name: Render geth client toml configuration
   include_tasks: "common/config.yml"
+
+- name: Start Geth client and RPC service
+  include_tasks: "common/service.yml"
