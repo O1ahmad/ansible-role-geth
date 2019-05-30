@@ -3,7 +3,11 @@
 {% for section in geth_config %}
 [{{ section }}]
 {% for key, value in geth_config[section].iteritems() %}
+{% if value is string or value is iterable %}
+{{ key }} = "{{ value }}"
+{% else %}
 {{ key }} = {{ value }}
+{% endif %}
 {% endfor %}
  
 {% endfor %}

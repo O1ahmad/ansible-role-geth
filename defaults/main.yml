@@ -11,13 +11,11 @@ install_dir: /opt/geth
 config_template: config.toml.j2
 config_dir: /etc/geth
 
-data_dir: /var/geth
-
 geth_config:
   Eth:
-    SyncMode: '"fast"'
+    SyncMode: fast
   Node:
-    DataDir: '"/var/geth"'
+    DataDir: /var/geth
 
 systemd_template: geth.service.j2
 systemd_dir: /etc/systemd/system/

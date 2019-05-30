@@ -4,11 +4,10 @@
     - ansible-role-geth
   vars:
     install_type: source
-    data_dir: /var/geth
     geth_config:
       Eth:
-        SyncMode: '"full"'
+        SyncMode: full
         LightPeers: 20
       Node:
         HTTPModules: '["net", "web3", "eth", "shh"]'
-        DataDir: '"/var/geth"'
+        DataDir: /var/test/geth
