@@ -1,5 +1,5 @@
 ---
-# defaults file for geth
+# defaults variable file for geth
 geth_user: geth
 
 install_type: package
@@ -19,3 +19,5 @@ geth_config:
 
 systemd_template: geth.service.j2
 systemd_dir: /etc/systemd/system/
+launchd_template: com.O1.geth.plist.j2
+launchd_dir: /Library/Agents

@@ -16,7 +16,7 @@
     group: "{{ geth_user }}"
     mode: 0644
 
-- name: Create data directory
+- name: Ensure creation of data directory based on configuration
   file:
     path: "{{ geth_config.Node.DataDir }}"
     state: directory
