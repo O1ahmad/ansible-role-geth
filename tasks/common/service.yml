@@ -11,7 +11,6 @@
 - name: Enable and start Geth service
   service:
     name: geth
-    pattern: "{{ install_dir }}/geth"
     state: started
     enabled: yes
   when: ansible_os_family != "Darwin"

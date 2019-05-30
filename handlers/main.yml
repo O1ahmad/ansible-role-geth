@@ -1,2 +1,3 @@
 ---
-# handlers file for geth
+- name: restart geth
+  service: name=geth state=restarted

@@ -9,5 +9,5 @@
         SyncMode: full
         LightPeers: 20
       Node:
-        HTTPModules: '["net", "web3", "eth", "shh"]'
-        DataDir: /var/test/geth
+        HTTPModules: ["net", "web3", "eth", "shh"]
+        DataDir: /var/test
