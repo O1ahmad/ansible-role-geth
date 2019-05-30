@@ -1,10 +1,12 @@
 ---
-- name: Copy Geth systemd service file in place
+#######  Systemd service setup #######
+- name: Render Geth systemd service file in place
   template:
     src: "{{ systemd_template }}"
     dest: "{{ systemd_dir }}/geth.service"
     owner: "root"
     group: "root"
+  when: ansible_os_family != "Darwin"
 
 - name: Enable and start Geth service
   service:
@@ -12,3 +14,14 @@
     pattern: "{{ install_dir }}/geth"
     state: started
     enabled: yes
+  when: ansible_os_family != "Darwin"
+
+#######  Launchd service setup #######
+- name: Render Geth launchd service plist in place
+  template:
+    src: "{{ launchd_template }}"
+    dest: "{{ launchd_dir }}/com.O1.geth.plist"
+    owner: "root"
+    group: "root"
+  become: true
+  when: ansible_os_family == "Darwin"
