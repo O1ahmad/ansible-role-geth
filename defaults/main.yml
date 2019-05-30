@@ -2,7 +2,7 @@
 # defaults variable file for geth
 geth_user: geth
 
-install_type: package
+install_type: source
 install_state: present
 
 install_src: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.8.27-4bcc0a37.tar.gz
