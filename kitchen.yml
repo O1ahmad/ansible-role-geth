@@ -21,17 +21,12 @@ verifier:
 platforms:
   # Redhat
   - name: centos-7
+  - name: fedora-27
   - name: fedora-28
   - name: fedora-29
   # Debian
   - name: debian-8
   - name: debian-9
-  - name: ubuntu-14.04
-    lifecycle:
-      pre_verify:
-        - remote: sudo add-apt-repository --yes ppa:pitti/systemd
-        - remote: sudo apt-get update
-        - remote: sudo apt-get install --yes systemd libpam-systemd
   - name: ubuntu-16.04
   - name: ubuntu-18.04
 
@@ -46,6 +41,7 @@ suites:
       # redhat & debian OS system packages are not available
       # see: https://geth.ethereum.org/install-and-build/Installing-Geth
       - centos-7
+      - fedora-27
       - fedora-28
       - fedora-29
       - debian-8
