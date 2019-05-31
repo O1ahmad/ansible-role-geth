@@ -1,5 +1,6 @@
 ---
 # Geth configuration rendering
+
 - name: Create configuration directory
   file:
     path: "{{ config_dir }}"
@@ -7,6 +8,8 @@
     owner: "{{ geth_user }}"
     group: "{{ geth_user }}"
   become: true
+  notify:
+    - check config dir uninstall
 
 - name: Copy Geth configuration in place
   template:
@@ -17,6 +20,7 @@
     mode: 0644
   notify:
     - restart geth
+    - check config dir uninstall
 
 - name: Ensure creation of data directory based on configuration
   file:
@@ -26,4 +30,4 @@
     group: "{{ geth_user }}"
   become: true
   notify:
-    - restart geth
+    - check data dir uninstall

@@ -13,14 +13,18 @@
 - name: Add PPA for Ethereum
   apt_repository:
     repo: 'ppa:ethereum/ethereum'
-    state: "{{ install_state }}"
+    state: present
     update_cache: true
   become: true
   when: install_type == "package" and ansible_distribution == "Ubuntu"
+  notify:
+    - check package-repo uninstall
 
 - name: Install geth package
   package:
     name: ethereum
-    state: "{{ install_state }}"
+    state: present
   become: true
   when: install_type == "package"
+  notify:
+    - check package uninstall

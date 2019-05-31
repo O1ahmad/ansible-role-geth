@@ -3,11 +3,15 @@
 - name: Tap ethereum formula repository
   homebrew_tap:
     name: ethereum/ethereum
-    state: "{{ install_state }}"
+    state: present
   when: install_type == "package"
+  notify:
+    - check homebrew-tap uninstall
 
 - name: Install geth homebrew package
   homebrew:
     name: ethereum
-    state: "{{ install_state }}"
+    state: present
   when: install_type == "package"
+  notify:
+    - check homebrew-package uninstall
