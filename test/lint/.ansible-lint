@@ -1,0 +1,4 @@
+# see for details: https://docs.ansible.com/ansible-lint/index.html
+exclude_paths:
+  - .git/
+  - .kitchen/

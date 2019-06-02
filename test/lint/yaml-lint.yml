@@ -1,8 +1,8 @@
 ---
+# see for details: https://yamllint.readthedocs.io/en/stable/index.html
 extends: default
 ignore: |
-    .git
-    .gitignore
+    .git/
     .kitchen/
 rules:
   line-length:
