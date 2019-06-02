@@ -20,6 +20,7 @@ verifier:
 
 platforms:
   # Redhat
+  - name: centos-6
   - name: centos-7
   - name: fedora-27
   - name: fedora-28
@@ -29,6 +30,7 @@ platforms:
   - name: debian-9
   - name: ubuntu-16.04
   - name: ubuntu-18.04
+  - name: ubuntu-18.10
 
 suites:
   - name: install_package
@@ -40,6 +42,7 @@ suites:
     excludes:
       # redhat & debian OS system packages are not available
       # see: https://geth.ethereum.org/install-and-build/Installing-Geth
+      - centos-6
       - centos-7
       - fedora-27
       - fedora-28
