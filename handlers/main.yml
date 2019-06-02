@@ -10,7 +10,7 @@
   apt_repository:
     repo: 'ppa:ethereum/ethereum'
     state: absent
-    update_cache: false
+    update_cache: true
   become: true
   when: perform_uninstall and install_type == "package" and ansible_distribution == "Ubuntu"
 
@@ -64,6 +64,7 @@
   service:
     name: geth
     state: stopped
+    enabled: no
   when: perform_uninstall and ansible_os_family != "Darwin"
 
 - name: check systemd service file uninstall
