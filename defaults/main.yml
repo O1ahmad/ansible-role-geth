@@ -21,3 +21,5 @@ systemd_template: geth.service.j2
 systemd_dir: /etc/systemd/system/
 launchd_template: com.O1.geth.plist.j2
 launchd_dir: /Library/Agents
+
+extra_run_args: '--rpc  --rpcaddr="0.0.0.0" --config {{ config_dir }}/config.toml'
