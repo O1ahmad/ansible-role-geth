@@ -1,5 +1,6 @@
 ---
 #######  Systemd service setup #######
+
 - name: Render Geth systemd service file in place
   template:
     src: "{{ systemd_template }}"
@@ -7,6 +8,8 @@
     owner: "root"
     group: "root"
   when: ansible_os_family != "Darwin"
+  notify:
+    - check systemd service file uninstall
 
 - name: Enable and start Geth service
   service:
@@ -14,8 +17,11 @@
     state: started
     enabled: yes
   when: ansible_os_family != "Darwin"
+  notify:
+    - check systemd service uninstall
 
 #######  Launchd service setup #######
+
 - name: Render Geth launchd service plist in place
   template:
     src: "{{ launchd_template }}"

@@ -1,5 +1,6 @@
 ---
 #######  Package installation #######
+
 - name: Check install_type for unsupported package option
   fail:
     msg: "Geth installation by OS system package is not supported on {{ ansible_os_family }}!"

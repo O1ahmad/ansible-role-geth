@@ -3,7 +3,7 @@
 geth_user: geth
 
 install_type: source
-install_state: present
+perform_uninstall: false
 
 install_src: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.8.27-4bcc0a37.tar.gz
 install_dir: /opt/geth

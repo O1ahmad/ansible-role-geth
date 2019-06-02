@@ -1,3 +1,81 @@
 ---
+#######  RESTART operations #######
+
 - name: restart geth
   service: name=geth state=restarted
+
+#######  UNINSTALL operations #######
+
+- name: check package-repo uninstall
+  apt_repository:
+    repo: 'ppa:ethereum/ethereum'
+    state: absent
+    update_cache: false
+  become: true
+  when: perform_uninstall and install_type == "package" and ansible_distribution == "Ubuntu"
+
+- name: check package uninstall
+  package:
+    name: ethereum
+    state: absent
+  become: true
+  when: perform_uninstall and install_type == "package" and ansible_distribution == "Ubuntu"
+
+# -------------------------------- #
+
+- name: check homebrew-tap uninstall
+  homebrew_tap:
+    name: ethereum/ethereum
+    state: absent
+  when: perform_uninstall and install_type == "package" and ansible_os_family == "Darwin"
+
+- name: check homebrew-package uninstall
+  homebrew:
+    name: ethereum
+    state: absent
+  when: perform_uninstall and install_type == "package" and ansible_os_family == "Darwin"
+
+# -------------------------------- #
+
+- name: check install dir uninstall
+  file:
+    path: "{{ install_dir }}"
+    state: absent
+  become: true
+  when: perform_uninstall
+
+- name: check config dir uninstall
+  file:
+    path: "{{ config_dir }}"
+    state: absent
+  become: true
+  when: perform_uninstall
+
+- name: check data dir uninstall
+  file:
+    path: "{{ geth_config.Node.DataDir }}"
+    state: absent
+  become: true
+  when: perform_uninstall
+
+# -------------------------------- #
+
+- name: check systemd service uninstall
+  service:
+    name: geth
+    state: stopped
+  when: perform_uninstall and ansible_os_family != "Darwin"
+
+- name: check systemd service file uninstall
+  file:
+    path: "{{ systemd_dir }}/geth.service"
+    state: absent
+  become: true
+  when: perform_uninstall and ansible_os_family != "Darwin"
+
+- name: check launchd service uninstall
+  file:
+    path: "{{ launchd_dir }}/com.O1.geth.plist"
+    state: absent
+  become: true
+  when: perform_uninstall and ansible_os_family == "Darwin"
