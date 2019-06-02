@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: Ahmad Wilson
   description: Geth (Go-Ethereum), a Go-based Ethereum client installation for Linux and MacOs.
@@ -26,7 +27,7 @@ galaxy_info:
         - cosmic
 
   galaxy_tags:
-  - blockchain
-  - ethereum
-  - mining
-  - crypto
+    - blockchain
+    - ethereum
+    - mining
+    - crypto

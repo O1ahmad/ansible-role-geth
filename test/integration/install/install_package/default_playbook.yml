@@ -1,3 +1,4 @@
+---
 - name: Default playbook for installing Geth via OS system package managers
   hosts: test-kitchen
   roles:

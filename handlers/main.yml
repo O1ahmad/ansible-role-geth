@@ -64,7 +64,7 @@
   service:
     name: geth
     state: stopped
-    enabled: no
+    enabled: false
   when: perform_uninstall and ansible_os_family != "Darwin"
 
 - name: check systemd service file uninstall

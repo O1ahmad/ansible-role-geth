@@ -1,3 +1,4 @@
+---
 - name: Default playbook for testing Geth setup
   hosts: test-kitchen
   roles:

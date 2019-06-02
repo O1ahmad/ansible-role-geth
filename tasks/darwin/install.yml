@@ -1,5 +1,7 @@
 ---
-  #######  Package installation #######
+
+#######  Package installation #######
+
 - name: Tap ethereum formula repository
   homebrew_tap:
     name: ethereum/ethereum
