@@ -6,7 +6,7 @@
     name: "{{ geth_user }}"
     state: present
   become: true
-  
+
 - name: Create Geth user
   user:
     comment: Geth client account
