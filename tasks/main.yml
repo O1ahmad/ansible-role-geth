@@ -3,8 +3,8 @@
   include_vars: "{{ item }}"
   with_first_found:
     - files:
-      - "{{ ansible_distribution }}.yml"
-      - "{{ ansible_os_family }}.yml"
+        - "{{ ansible_distribution }}.yml"
+        - "{{ ansible_os_family }}.yml"
       skip: true
 
 - name: Include common installation tasks
@@ -14,8 +14,8 @@
   include_tasks: "{{ item }}"
   with_first_found:
     - files:
-      - "{{ ansible_distribution|lower }}/install.yml"
-      - "{{ ansible_os_family|lower }}/install.yml"
+        - "{{ ansible_distribution|lower }}/install.yml"
+        - "{{ ansible_os_family|lower }}/install.yml"
       skip: true
 
 - name: Render geth client toml configuration

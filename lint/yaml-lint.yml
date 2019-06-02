@@ -1,0 +1,10 @@
+---
+extends: default
+ignore: |
+    .git
+    .gitignore
+    .kitchen/
+rules:
+  line-length:
+    max: 120
+    level: warning

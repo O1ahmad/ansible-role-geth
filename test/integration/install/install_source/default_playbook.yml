@@ -1,3 +1,4 @@
+---
 - name: playbook for installing Geth via client source
   hosts: test-kitchen
   roles:
@@ -5,4 +6,3 @@
   vars:
     install_type: source
     geth_user: test
-
