@@ -17,8 +17,23 @@ Requires the `unzip/gtar` utility to be installed on the server. See ansible `un
 
 Role Variables
 --------------
+Variables are available and organized according to the following software & machine provisioning stages:
+* install
+* config
+* startup
+* cleanup
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+###### [INSTALL]
+Installation via both system OS package management systems and download/extraction from source compressed packages (`.tar`, `.zip`) is supported.
+
+###### [CONFIG]
+...
+
+###### [STARTUP]
+...
+
+###### [CLEANUP]
+...
 
 Dependencies
 ------------
@@ -28,14 +43,12 @@ None
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+Run a full Ethereum node using "fast" sync-mode, enabling both the RPC server interface and client miner:
 ```yaml
-    - hosts: servers
+    - hosts: all
       roles:
       - role: 0xO1.geth
       	vars:
-      	  install_type: source
-      	  install_src: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.8.27-4bcc0a37.tar.gz
       	  config_dir: /etc/geth
       	  geth_config:
       		Eth:
