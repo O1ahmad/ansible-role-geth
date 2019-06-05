@@ -6,7 +6,7 @@ an Ansible role that installs, configures and runs as a service, Geth: a command
 Requirements
 ------------
 
-Requires the unzip/gtar utility to be installed on the server. See ansible unarchive module [notes](https://docs.ansible.com/ansible/latest/modules/unarchive_module.html#notes).
+Requires the `unzip/gtar` utility to be installed on the server. See ansible `unarchive` module [notes](https://docs.ansible.com/ansible/latest/modules/unarchive_module.html#notes).
 
 Role Variables
 --------------
