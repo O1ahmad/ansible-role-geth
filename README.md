@@ -1,7 +1,7 @@
-Geth Ansible Role
+Ansible Role :link: Geth
 =========
 
-Ansible role that installs, configures and runs as a service, Geth: a command-line interface for running an ethereum node :star2: :link: :bulb:
+Ansible role that installs, configures and runs as a service, Geth: a command-line interface for running an ethereum node :star2:
 
 ##### Supported Platforms:
 ```
@@ -23,16 +23,16 @@ Variables are available and organized according to the following software & mach
 * startup
 * cleanup
 
-###### [INSTALL]
+###### __[Install]__
 Installation via both system OS package management systems and download/extraction from source compressed packages (`.tar`, `.zip`) is supported.
 
-###### [CONFIG]
+###### __[Config]__
 ...
 
-###### [STARTUP]
+###### __[Startup]__
 ...
 
-###### [CLEANUP]
+###### __[Cleanup]__
 ...
 
 Dependencies
