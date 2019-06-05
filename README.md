@@ -1,12 +1,19 @@
-Ansible Role: Geth
+Geth Ansible Role
 =========
 
-an Ansible role that installs, configures and runs as a service, Geth: a command-line interface for running an ethereum node (supports CentOS/RHEL, Debian/Ubuntu and MacOs) :star2: :link: :bulb:
+Ansible role that installs, configures and runs as a service, Geth: a command-line interface for running an ethereum node :star2: :link: :bulb:
+
+# Supported Platforms:
+```
+* CentOS/RHEL
+* Debian/Ubuntu
+* MacOS
+```
 
 Requirements
 ------------
 
-Requires the `unzip/gtar` utility to be installed on the server. See ansible `unarchive` module [notes](https://docs.ansible.com/ansible/latest/modules/unarchive_module.html#notes).
+Requires the `unzip/gtar` utility to be installed on the server. See ansible `unarchive` module [notes](https://docs.ansible.com/ansible/latest/modules/unarchive_module.html#notes) for details.
 
 Role Variables
 --------------
@@ -22,10 +29,21 @@ Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
+```yaml
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+      - role: 0xO1.geth
+      	vars:
+      		install_type: source
+      		install_src: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.8.27-4bcc0a37.tar.gz
+      		config_dir: /etc/geth
+      		geth_config:
+      			Eth:
+      				SyncMode: fast
+      			Node:
+      				DataDir: /mnt/geth
+      		extra_run_args: '--rpc  --rpcaddr="0.0.0.0" --config {{ config_dir }}/config.toml'
+```
 
 License
 -------
