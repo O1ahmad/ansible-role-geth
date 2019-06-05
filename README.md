@@ -3,7 +3,7 @@ Geth Ansible Role
 
 Ansible role that installs, configures and runs as a service, Geth: a command-line interface for running an ethereum node :star2: :link: :bulb:
 
-# Supported Platforms:
+### Supported Platforms:
 ```
 * CentOS/RHEL
 * Debian/Ubuntu
@@ -34,15 +34,15 @@ Including an example of how to use your role (for instance, with variables passe
       roles:
       - role: 0xO1.geth
       	vars:
-      		install_type: source
-      		install_src: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.8.27-4bcc0a37.tar.gz
-      		config_dir: /etc/geth
-      		geth_config:
-      			Eth:
-      				SyncMode: fast
-      			Node:
-      				DataDir: /mnt/geth
-      		extra_run_args: '--rpc  --rpcaddr="0.0.0.0" --config {{ config_dir }}/config.toml'
+      	  install_type: source
+      	  install_src: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.8.27-4bcc0a37.tar.gz
+      	  config_dir: /etc/geth
+      	  geth_config:
+      		Eth:
+      		  SyncMode: fast
+      		Node:
+      		  DataDir: /mnt/geth
+      	  extra_run_args: '--rpc  --rpcaddr="0.0.0.0" --config {{ config_dir }}/config.toml --miner.threads 16'
 ```
 
 License
