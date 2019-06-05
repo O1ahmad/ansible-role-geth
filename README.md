@@ -1,11 +1,11 @@
 Ansible Role :link: Geth
 =========
 
-Ansible role that installs, configures and runs as a service, Geth: a command-line interface for running an ethereum node :star2:
+Ansible role that installs, configures and runs as a service, Geth: a command-line interface for running an ethereum node.
 
 ##### Supported Platforms:
 ```
-* CentOS/RHEL
+* CentOS/Fedora/RHEL
 * Debian/Ubuntu
 * MacOS
 ```
@@ -23,16 +23,23 @@ Variables are available and organized according to the following software & mach
 * startup
 * cleanup
 
-###### __[Install]__
-Installation via both system OS package management systems and download/extraction from source compressed packages (`.tar`, `.zip`) is supported.
+##### __[Install]__
+`geth` can be installed using both system OS package management systems (e.g `apt-get`, `yum`) and download/extraction from source compressed packages (`.tar`, `.zip`).
 
-###### __[Config]__
+The following variables can be customized to control various aspects of this installation process, ranging from software version and the source location of binaries to the installation directory where they are stored.
+
+`install_type: <package | source>`
+- **package**: ONLY supported by Ubuntu and MacOS, package installation of Geth pulls the lastest package available for either platform from the [Ubuntu PPA](https://launchpad.net/~ethereum/+archive/ubuntu/ethereum/+packages) (Personal Package Archive) or the [Mac Homebrew formulae repository](https://formulae.brew.sh/formula/ethereum).
+  - Note that the installation directory is determined by the package management system and currently defaults to `/usr/bin/geth` for Linux and `/usr/local/bin/geth` for MacOS. Attempts to set and execute a package installation on other Linux distros will result in failure due to lack of support.
+- **source**: compatible with both **tar and zip** formats, source installation binaries can be obtained from local and remote compressed archives either from the official download or releases site or by those generated from development or custom versions of the tool.
+
+##### __[Config]__
 ...
 
-###### __[Startup]__
+##### __[Startup]__
 ...
 
-###### __[Cleanup]__
+##### __[Cleanup]__
 ...
 
 Dependencies
