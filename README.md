@@ -28,10 +28,16 @@ Variables are available and organized according to the following software & mach
 
 The following variables can be customized to control various aspects of this installation process, ranging from software version and the source location of binaries to the installation directory where they are stored.
 
-`install_type: <package | source>`
+`install_type: <package | source>` (**default**: source)
 - **package**: ONLY supported by Ubuntu and MacOS, package installation of Geth pulls the lastest package available for either platform from the [Ubuntu PPA](https://launchpad.net/~ethereum/+archive/ubuntu/ethereum/+packages) (Personal Package Archive) or the [Mac Homebrew formulae repository](https://formulae.brew.sh/formula/ethereum).
   - Note that the installation directory is determined by the package management system and currently defaults to `/usr/bin/geth` for Linux and `/usr/local/bin/geth` for MacOS. Attempts to set and execute a package installation on other Linux distros will result in failure due to lack of support.
 - **source**: compatible with both **tar and zip** formats, source installation binaries can be obtained from local and remote compressed archives either from the official download or releases site or by those generated from development or custom versions of the tool.
+
+`install_src: <path-or-url-to-src>` (**default**: see `defaults/main.yml`)
+- address of a compressed **tar or zip** package containing `geth` binaries. This method technically supports installation of any available version of `geth`. Links to official versions can be found [here](https://geth.ethereum.org/downloads/).
+
+`install_dir: </path/to/installation/dir>` (**default**: see `defaults/main.yml | vars/main.yml`)
+- path on remote host where the `geth` binaries should be extracted to
 
 ##### __[Config]__
 ...
