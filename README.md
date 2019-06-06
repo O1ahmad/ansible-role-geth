@@ -50,7 +50,7 @@ _The following variables can be customized to manage the location and content of
 
 `geth_config: {"<config-section>": {"<section-setting>": "<setting-value>",..},..}`
 
-> **default**: see `defaults/main.yml | vars/main.yml`
+   **default**: see `defaults/main.yml | vars/main.yml`
 
 * Any configuration setting/value key-pair supported by `geth` should be expressible within the `geth_config` hash and properly rendered within the associated TOML config file. Values can be expressed in typical _yaml/ansible_ form (e.g. Strings, numbers and true/false values should be written as is and without quotes).
 
