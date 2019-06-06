@@ -24,7 +24,7 @@ Variables are available and organized according to the following software & mach
 * _cleanup_
 
 ##### __[Install]__
-_`geth` can be installed using OS package management systems (e.g `apt-get`, `homebrew`) and download/extractions from source compressed packages (`.tar`, `.zip`)._
+'geth` can be installed using OS package management systems (e.g `apt-get`, `homebrew`) and download/extractions from source compressed packages (`.tar`, `.zip`).
 
 _The following variables can be customized to control various aspects of this installation process, ranging from software version and the source location of binaries to the installation directory where they are stored:_
 
@@ -41,7 +41,7 @@ _The following variables can be customized to control various aspects of this in
 
 ##### __[Config]__
 
-_Configuration of the `geth` client can be expressed in [TOML](https://github.com/toml-lang/toml), a minimal markup language used as an alternative to passing command-line flags at runtime. To get an idea how the config should look you can use the `geth dumpconfig` subcommand to export a client's existing configuration._
+Configuration of the `geth` client can be expressed in [TOML](https://github.com/toml-lang/toml), a minimal markup language used as an alternative to passing command-line flags at runtime. To get an idea how the config should look you can use the `geth dumpconfig` subcommand to export a client's existing configuration.
 
 _The following variables can be customized to manage the location and content of this TOML configuration:_
 
