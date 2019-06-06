@@ -52,16 +52,18 @@ _The following variables can be customized to manage the location and content of
 
 > **default**: see `defaults/main.yml | vars/main.yml`
 
-* Any configuration setting/value key-pair supported by `geth` should be expressible within the `geth_config` hash and properly rendered within the associated TOML config file
-* Setting values can be expressed in typical _yaml/ansible_ form (i.e. Strings, numbers and true/false values should be written as is and without quotes)
-* Configuration is not constrained by hardcoded author defined defaults or limited by pre-baked templating. If the config section, setting and value are recognized by the `geth` tool, it's :thumbsup: to define within `geth_config`. An example of the full list of configuratable settings can be found [here](https://gist.github.com/0x0I/5887dae3cdf4620ca670e3b194d82cba).
+* Any configuration setting/value key-pair supported by `geth` should be expressible within the `geth_config` hash and properly rendered within the associated TOML config file. Values can be expressed in typical _yaml/ansible_ form (e.g. Strings, numbers and true/false values should be written as is and without quotes).
+
+  Furthermore, configuration is not constrained by hardcoded author defined defaults or limited by pre-baked templating. If the config section, setting and value are recognized by the `geth` tool, :thumbsup: to define within `geth_config`.
+  
+  A list of configuratable settings can be found [here](https://gist.github.com/0x0I/5887dae3cdf4620ca670e3b194d82cba).
 * Keys of the `geth_config` hash represent TOML config sections
   ```yaml
   geth_config:
     # [TOML Section 'Shh']
     Shh: {}
   ```
-* Values of `geth_config[<key>]` represent key,value pairs within an embedded hash expressing config settings and values
+* Values of `geth_config[<key>]` represent key,value pairs within an embedded hash expressing config settings
   ```yaml
   geth_config:
     # TOML Section '[Shh]'
