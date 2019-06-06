@@ -1,7 +1,7 @@
 Ansible Role :link: Geth
 =========
 
-Ansible role that installs, configures and runs Geth: a command-line interface and server for operating an ethereum node.
+Ansible role that installs, configures and runs Geth: a command-line interface and API server for operating an ethereum node.
 
 ##### Supported Platforms:
 ```
@@ -25,7 +25,7 @@ Variables are available and organized according to the following software & mach
 
 #### Install
 
-`geth`can be installed using OS package management systems (e.g `apt-get`, `homebrew`) and download/extractions from source compressed packages (`.tar`, `.zip`).
+`geth`can be installed using OS package management systems (e.g `apt`, `homebrew`) or compressed archives (`.tar`, `.zip`) downloaded and extracted from various sources.
 
 _The following variables can be customized to control various aspects of this installation process, ranging from software version and the source location of binaries to the installation directory where they are stored:_
 
@@ -75,9 +75,40 @@ _The following variables can be customized to manage the location and content of
 
 #### Launch
 
-...
+Running the `geth` client and API server, either in its RPC, IPC or WS-RPC form, is accomplished utilizing the [systemd](https://www.freedesktop.org/wiki/Software/systemd/) or [launchd](https://www.launchd.info/) service management tools, for Linux and MacOS platforms respectively. Launched as background processes or daemons subject to the configuration and execution potential provided by the underlying management frameworks, the `geth` client and API servers can be set to adhere to system administrative policies right for your environment and organization.
+
+_The following variables can be customized to manage the location of the `geth` service definition and execution profile/policy right:_
+
+`systemd_dir: </path/to/systemd/service/dir>` (**default**: see `/etc/systemd/system`)
+- path on target host where the `geth` **systemd** service file should be copied. **note:** while not advised and unlikely that you'll need or want to modify this location, support for variable definition is supplied to allow for flexible and user-defined organization of service definitions. __ONLY__ relevant on supported Linux platforms.
+
+`launchd_dir: </path/to/launchd/job-definition/dir>` (**default**: see `/Library/LaunchDaemons`)
+- path on target host where the `geth` **launchd** job definition file should be copied. **note:** while not advised and unlikely that you'll need or want to modify this location, support for variable definition is supplied to allow for flexible and user-defined organization of job definitions. ONLY relevant on MacOS.
+
+`extra_run_args: <geth-cli-options>` (**default**: see `defaults/main.yml`)
+- list of `geth` commandline arguments to pass to the binary at runtime for customizing launch. Supporting full expression of `geth`'s cli, this variable enables the role of target hosts to be customized according to the user's specification; whether to activate a particular API protocol listener, connect to a pre-configured Ethereum test or production network or whatever is supported by `geth`.
+
+  A list of available command-line options can be found [here](https://gist.github.com/0x0I/a06e231d4fd0509ddf3a44f8499a2941).
+  
+  Connect to either the Ropsten PoW(proof-of-work) or Rinkeby PoA(proof-of-authory) pre-configured test network:
+  ```
+  extra_run_args: "--testnet" # PoW
+  # ...or...
+  extra_run_args: "--rinkeby" # PoA
+  ```
+  
+  Enhance logging and debugging capabilities for troubleshooting issues:
+  ```
+  extra_run_args: "--debug --verbosity 5 --trace /tmp/geth.trace"
+  ```
+  
+  Enable client and server profiling for analytics and testing purposes:
+  ```
+  extra_run_args: "--pprof --memprofilerate 1048576 --blockprofilerate 1 --cpuprofile /tmp/geth-cpu-profile"
+  ```
 
 #### Cleanup
+
 ...
 
 Dependencies
@@ -94,7 +125,19 @@ Basic setup with defaults:
   - role: 0xO1.geth
 ```
 
-Run a full Ethereum node using "fast" sync-mode (only process most recent transactions) and enabling both the RPC server interface and client miner:
+Launch an Ethereum light client and connect it to the Rinkeby PoA (Proof of Authority) test network:
+```
+- hosts: all
+  roles:
+  - role: 0xO1.geth
+    vars:
+      geth_config:
+        Eth:
+          SyncMode: light
+      extra_run_args: '--config /etc/geth/config.toml --rinkeby'
+```
+
+Run a full Ethereum node using "fast" sync-mode (only process most recent transactions), enabling both the RPC server interface and client miner and overriding the (block) data directory:
 ```
 - hosts: all
   roles:
