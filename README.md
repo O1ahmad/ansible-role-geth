@@ -24,7 +24,7 @@ Variables are available and organized according to the following software & mach
 * _cleanup_
 
 ##### __[Install]__
-'geth` can be installed using OS package management systems (e.g `apt-get`, `homebrew`) and download/extractions from source compressed packages (`.tar`, `.zip`).
+`geth`can be installed using OS package management systems (e.g `apt-get`, `homebrew`) and download/extractions from source compressed packages (`.tar`, `.zip`).
 
 _The following variables can be customized to control various aspects of this installation process, ranging from software version and the source location of binaries to the installation directory where they are stored:_
 
