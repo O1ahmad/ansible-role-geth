@@ -18,15 +18,15 @@ Requires the `unzip/gtar` utility to be installed on the server. See ansible `un
 Role Variables
 --------------
 Variables are available and organized according to the following software & machine provisioning stages:
-* install
-* config
-* startup
-* cleanup
+* _install_
+* _config_
+* _startup_
+* _cleanup_
 
 ##### __[Install]__
-`geth` can be installed using both system OS package management systems (e.g `apt-get`, `yum`) and download/extraction from source compressed packages (`.tar`, `.zip`).
+`geth` can be installed using OS package management systems (e.g `apt-get`, `homebrew`) and download/extractions from source compressed packages (`.tar`, `.zip`).
 
-The following variables can be customized to control various aspects of this installation process, ranging from software version and the source location of binaries to the installation directory where they are stored.
+The following variables can be customized to control various aspects of this installation process, ranging from software version and the source location of binaries to the installation directory where they are stored:
 
 `install_type: <package | source>` (**default**: source)
 - **package**: ONLY supported by Ubuntu and MacOS, package installation of Geth pulls the lastest package available for either platform from the [Ubuntu PPA](https://launchpad.net/~ethereum/+archive/ubuntu/ethereum/+packages) (Personal Package Archive) or the [Mac Homebrew formulae repository](https://formulae.brew.sh/formula/ethereum).
@@ -40,7 +40,17 @@ The following variables can be customized to control various aspects of this ins
 - path on remote host where the `geth` binaries should be extracted to
 
 ##### __[Config]__
-...
+
+Configuration of the `geth` client can be expressed in [TOML](https://github.com/toml-lang/toml), a minimal markup language used as an alternative to passing command-line flags at runtime. To get an idea how the config should look you can use the `geth dumpconfig` subcommand to export a client's existing configuration.
+
+The following variables can be customized to manage the location and content of this TOML configuration:
+
+`config_dir: </path/to/configuration/dir>` (**default**: see `/etc/geth`)
+- path on remote host where the `geth` TOML configuration should be stored
+
+`geth_config: {"<config-section>": {"<section-setting>": "<setting-value>",..},..}` (**default**: see `defaults/main.yml | vars/main.yml`)
+* Any configuration setting/value key-pair supported by `geth` should be expressible within the `geth_config` hash and properly rendered within the associated TOML config file.
+* Configuration is not constrained by hardcoded author defined defaults or limited by pre-baked templating. If the config section, setting and value are recognized by the `geth` tool, it's :thumbsup: to define within `geth_config`. An example of the full list of configuratable settings can be found [here](https://gist.github.com/0x0I/5887dae3cdf4620ca670e3b194d82cba). 
 
 ##### __[Startup]__
 ...
@@ -56,19 +66,19 @@ None
 Example Playbook
 ----------------
 
-Run a full Ethereum node using "fast" sync-mode, enabling both the RPC server interface and client miner:
-```yaml
-    - hosts: all
-      roles:
-      - role: 0xO1.geth
-      	vars:
-      	  config_dir: /etc/geth
-      	  geth_config:
-      		Eth:
-      		  SyncMode: fast
-      		Node:
-      		  DataDir: /mnt/geth
-      	  extra_run_args: '--rpc  --rpcaddr="0.0.0.0" --config {{ config_dir }}/config.toml --miner.threads 16'
+Run a full Ethereum node using "fast" sync-mode (only process most recent transactions) and enabling both the RPC server interface and client miner:
+```
+- hosts: all
+  roles:
+  - role: 0xO1.geth
+    vars:
+      config_dir: /etc/geth
+      geth_config:
+        Eth:
+          SyncMode: fast
+        Node:
+          DataDir: /mnt/geth
+      extra_run_args: '--config {{ config_dir }}/config.toml --rpc --rpcaddr="0.0.0.0" --mine --miner.threads 16'
 ```
 
 License
