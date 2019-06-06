@@ -48,9 +48,27 @@ The following variables can be customized to manage the location and content of 
 `config_dir: </path/to/configuration/dir>` (**default**: see `/etc/geth`)
 - path on remote host where the `geth` TOML configuration should be stored
 
-`geth_config: {"<config-section>": {"<section-setting>": "<setting-value>",..},..}` (**default**: see `defaults/main.yml | vars/main.yml`)
-* Any configuration setting/value key-pair supported by `geth` should be expressible within the `geth_config` hash and properly rendered within the associated TOML config file.
-* Configuration is not constrained by hardcoded author defined defaults or limited by pre-baked templating. If the config section, setting and value are recognized by the `geth` tool, it's :thumbsup: to define within `geth_config`. An example of the full list of configuratable settings can be found [here](https://gist.github.com/0x0I/5887dae3cdf4620ca670e3b194d82cba). 
+`geth_config: {"<config-section>": {"<section-setting>": "<setting-value>",..},..}`
+
+**default**: see `defaults/main.yml | vars/main.yml`
+
+* Any configuration setting/value key-pair supported by `geth` should be expressible within the `geth_config` hash and properly rendered within the associated TOML config file
+* Setting values can be expressed in typical _yaml/ansible_ form (i.e. Strings, numbers and true/false values should be written as is and without quotes)
+* Configuration is not constrained by hardcoded author defined defaults or limited by pre-baked templating. If the config section, setting and value are recognized by the `geth` tool, it's :thumbsup: to define within `geth_config`. An example of the full list of configuratable settings can be found [here](https://gist.github.com/0x0I/5887dae3cdf4620ca670e3b194d82cba).
+* Keys of the `geth_config` hash represent TOML config sections
+  ```yaml
+  geth_config:
+    # [TOML Section 'Shh']
+    Shh: {}
+  ```
+ * Values of `geth_config[<key>]` represent key,value pairs within an embedded hash expressing config settings and values
+ ```yaml
+  geth_config:
+    # TOML Section '[Shh]'
+    Shh:
+      # Section setting MaxMessageSize with value of 1048576
+      MaxMessageSize: 1048576
+  ```
 
 ##### __[Startup]__
 ...
@@ -65,6 +83,12 @@ None
 
 Example Playbook
 ----------------
+Basic setup:
+```
+- hosts: all
+  roles:
+  - role: 0xO1.geth
+```
 
 Run a full Ethereum node using "fast" sync-mode (only process most recent transactions) and enabling both the RPC server interface and client miner:
 ```
@@ -72,13 +96,12 @@ Run a full Ethereum node using "fast" sync-mode (only process most recent transa
   roles:
   - role: 0xO1.geth
     vars:
-      config_dir: /etc/geth
       geth_config:
         Eth:
           SyncMode: fast
         Node:
           DataDir: /mnt/geth
-      extra_run_args: '--config {{ config_dir }}/config.toml --rpc --rpcaddr="0.0.0.0" --mine --miner.threads 16'
+      extra_run_args: '--config /etc/geth/config.toml --rpc --rpcaddr="0.0.0.0" --mine --miner.threads 16'
 ```
 
 License
