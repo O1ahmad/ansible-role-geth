@@ -24,9 +24,9 @@ Variables are available and organized according to the following software & mach
 * _cleanup_
 
 ##### __[Install]__
-`geth` can be installed using OS package management systems (e.g `apt-get`, `homebrew`) and download/extractions from source compressed packages (`.tar`, `.zip`).
+_`geth` can be installed using OS package management systems (e.g `apt-get`, `homebrew`) and download/extractions from source compressed packages (`.tar`, `.zip`)._
 
-The following variables can be customized to control various aspects of this installation process, ranging from software version and the source location of binaries to the installation directory where they are stored:
+_The following variables can be customized to control various aspects of this installation process, ranging from software version and the source location of binaries to the installation directory where they are stored:_
 
 `install_type: <package | source>` (**default**: source)
 - **package**: ONLY supported by Ubuntu and MacOS, package installation of Geth pulls the lastest package available for either platform from the [Ubuntu PPA](https://launchpad.net/~ethereum/+archive/ubuntu/ethereum/+packages) (Personal Package Archive) or the [Mac Homebrew formulae repository](https://formulae.brew.sh/formula/ethereum).
@@ -41,9 +41,9 @@ The following variables can be customized to control various aspects of this ins
 
 ##### __[Config]__
 
-Configuration of the `geth` client can be expressed in [TOML](https://github.com/toml-lang/toml), a minimal markup language used as an alternative to passing command-line flags at runtime. To get an idea how the config should look you can use the `geth dumpconfig` subcommand to export a client's existing configuration.
+_Configuration of the `geth` client can be expressed in [TOML](https://github.com/toml-lang/toml), a minimal markup language used as an alternative to passing command-line flags at runtime. To get an idea how the config should look you can use the `geth dumpconfig` subcommand to export a client's existing configuration._
 
-The following variables can be customized to manage the location and content of this TOML configuration:
+_The following variables can be customized to manage the location and content of this TOML configuration:_
 
 `config_dir: </path/to/configuration/dir>` (**default**: see `/etc/geth`)
 - path on remote host where the `geth` TOML configuration should be stored
@@ -61,8 +61,8 @@ The following variables can be customized to manage the location and content of 
     # [TOML Section 'Shh']
     Shh: {}
   ```
- * Values of `geth_config[<key>]` represent key,value pairs within an embedded hash expressing config settings and values
- ```yaml
+* Values of `geth_config[<key>]` represent key,value pairs within an embedded hash expressing config settings and values
+  ```yaml
   geth_config:
     # TOML Section '[Shh]'
     Shh:
@@ -83,7 +83,7 @@ None
 
 Example Playbook
 ----------------
-Basic setup:
+Basic setup with defaults:
 ```
 - hosts: all
   roles:
