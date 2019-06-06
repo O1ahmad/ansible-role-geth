@@ -1,7 +1,7 @@
 Ansible Role :link: Geth
 =========
 
-Ansible role that installs, configures and runs Geth: a command-line interface and API server for operating an ethereum node.
+Ansible role that installs, configures and runs [Geth](https://geth.ethereum.org/): a command-line interface and API server for operating an ethereum node.
 
 ##### Supported Platforms:
 ```
@@ -77,7 +77,7 @@ _The following variables can be customized to manage the location and content of
 
 Running the `geth` client and API server, either in its RPC, IPC or WS-RPC form, is accomplished utilizing the [systemd](https://www.freedesktop.org/wiki/Software/systemd/) or [launchd](https://www.launchd.info/) service management tools, for Linux and MacOS platforms respectively. Launched as background processes or daemons subject to the configuration and execution potential provided by the underlying management frameworks, the `geth` client and API servers can be set to adhere to system administrative policies right for your environment and organization.
 
-_The following variables can be customized to manage the location of the `geth` service definition and execution profile/policy right:_
+_The following variables can be customized to manage the location of the `geth` service definition and execution profile/policy:_
 
 `systemd_dir: </path/to/systemd/service/dir>` (**default**: see `/etc/systemd/system`)
 - path on target host where the `geth` **systemd** service file should be copied. **note:** while not advised and unlikely that you'll need or want to modify this location, support for variable definition is supplied to allow for flexible and user-defined organization of service definitions. __ONLY__ relevant on supported Linux platforms.
@@ -109,7 +109,12 @@ _The following variables can be customized to manage the location of the `geth` 
 
 #### Cleanup
 
-...
+Support for uninstalling and removing artifacts necessary for provisioning has been added and allows for users/operators to return a target host to its configured state prior to application of this role. This can be useful for returning hosts to known good configurations (LKG), recycling nodes and roles and perhaps providing more graceful/managed transitions between tooling upgrades.
+
+_The following variable(s) can be customized to manage this cleanup process:_
+
+`perform_uninstall: <true | false>` (**default**: `false`)
+- whether to uninstall and remove all artifacts and remnants of this `geth` installation on a target host (**see**: `handlers/main.yml` for details)
 
 Dependencies
 ------------
@@ -127,7 +132,7 @@ Basic setup with defaults:
 
 Launch an Ethereum light client and connect it to the Rinkeby PoA (Proof of Authority) test network:
 ```
-- hosts: all
+- hosts: light-client
   roles:
   - role: 0xO1.geth
     vars:
@@ -139,7 +144,7 @@ Launch an Ethereum light client and connect it to the Rinkeby PoA (Proof of Auth
 
 Run a full Ethereum node using "fast" sync-mode (only process most recent transactions), enabling both the RPC server interface and client miner and overriding the (block) data directory:
 ```
-- hosts: all
+- hosts: full-node
   roles:
   - role: 0xO1.geth
     vars:
