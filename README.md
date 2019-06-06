@@ -1,7 +1,7 @@
 Ansible Role :link: Geth
 =========
 
-Ansible role that installs, configures and runs as a service, Geth: a command-line interface for running an ethereum node.
+Ansible role that installs, configures and runs Geth: a command-line interface and server for operating an ethereum node.
 
 ##### Supported Platforms:
 ```
