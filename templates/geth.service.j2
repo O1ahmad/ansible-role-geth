@@ -7,7 +7,7 @@ User={{ geth_user }}
 Group={{ geth_user }}
 Environment=HOME=/home/geth
 Type=simple
-ExecStart={{ install_dir }}/geth {{ extra_run_args }}
+ExecStart={{ install_dir }}/geth {% if geth_config %}--config {{ config_dir }}/config.toml{% endif %} {{ extra_run_args }}
 KillMode=process
 KillSignal=SIGINT
 TimeoutStopSec=90

@@ -139,7 +139,7 @@ Launch an Ethereum light client and connect it to the Rinkeby PoA (Proof of Auth
       geth_config:
         Eth:
           SyncMode: light
-      extra_run_args: '--config /etc/geth/config.toml --rinkeby'
+      extra_run_args: '--rinkeby'
 ```
 
 Run a full Ethereum node using "fast" sync-mode (only process most recent transactions), enabling both the RPC server interface and client miner and overriding the (block) data directory:
@@ -153,7 +153,7 @@ Run a full Ethereum node using "fast" sync-mode (only process most recent transa
           SyncMode: fast
         Node:
           DataDir: /mnt/geth
-      extra_run_args: '--config /etc/geth/config.toml --rpc --rpcaddr="0.0.0.0" --mine --miner.threads 16'
+      extra_run_args: '--rpc --rpcaddr="0.0.0.0" --mine --miner.threads 16'
 ```
 
 License
