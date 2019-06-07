@@ -42,7 +42,7 @@ _The following variables can be customized to control various aspects of this in
 
 #### Config
 
-Configuration of the `geth` client can be expressed in [TOML](https://github.com/toml-lang/toml), a minimal markup language used as an alternative to passing command-line flags at runtime. To get an idea how the config should look you can use the `geth dumpconfig` subcommand to export a client's existing configuration.
+Configuration of the `geth` client can be expressed in a config file written in [TOML](https://github.com/toml-lang/toml), a minimal markup language, used as an alternative to passing command-line flags at runtime. To get an idea how the config should look you can use the `geth dumpconfig` subcommand to export a client's existing configuration.
 
 _The following variables can be customized to manage the location and content of this TOML configuration:_
 
@@ -51,20 +51,20 @@ _The following variables can be customized to manage the location and content of
 
 `geth_config: {"<config-section>": {"<section-setting>": "<setting-value>",..},..}` **default**: see `vars/...`
 
-* Any configuration setting/value key-pair supported by `geth` should be expressible within the `geth_config` hash and properly rendered within the associated TOML config file. Values can be expressed in typical _yaml/ansible_ form (e.g. Strings, numbers and true/false values should be written as is and without quotes).
+* Any configuration setting/value key-pair supported by `geth` should be expressible within the `geth_config` hash and properly rendered within the associated TOML config. Values can be expressed in typical _yaml/ansible_ form (e.g. Strings, numbers and true/false values should be written as is and without quotes).
 
   Furthermore, configuration is not constrained by hardcoded author defined defaults or limited by pre-baked templating. If the config section, setting and value are recognized by the `geth` tool, :thumbsup: to define within `geth_config`.
   
   A list of configurable settings can be found [here](https://gist.github.com/0x0I/5887dae3cdf4620ca670e3b194d82cba).
   
-  Keys of the `geth_config` hash represent TOML config sections
+  Keys of the `geth_config` hash represent TOML config sections:
   ```yaml
   geth_config:
     # [TOML Section 'Shh']
     Shh: {}
   ```
   
-  Values of `geth_config[<key>]` represent key,value pairs within an embedded hash expressing config settings
+  Values of `geth_config[<key>]` represent key,value pairs within an embedded hash expressing config settings:
   ```yaml
   geth_config:
     # TOML Section '[Shh]'
@@ -109,7 +109,7 @@ _The following variables can be customized to manage the location of the `geth` 
 
 #### Uninstall
 
-Support for uninstalling and removing artifacts necessary for provisioning has been added and allows for users/operators to return a target host to its configured state prior to application of this role. This can be useful for returning hosts to known good configurations (LKG), recycling nodes and roles and perhaps providing more graceful/managed transitions between tooling upgrades.
+Support for uninstalling and removing artifacts necessary for provisioning allows for users/operators to return a target host to its configured state prior to application of this role. This can be useful for recycling nodes and roles and perhaps providing more graceful/managed transitions between tooling upgrades.
 
 _The following variable(s) can be customized to manage this uninstall process:_
 
