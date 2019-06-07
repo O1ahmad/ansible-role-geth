@@ -21,7 +21,7 @@ Variables are available and organized according to the following software & mach
 * _install_
 * _config_
 * _launch_
-* _cleanup_
+* _uninstall_
 
 #### Install
 
@@ -107,11 +107,11 @@ _The following variables can be customized to manage the location of the `geth` 
   extra_run_args: "--pprof --memprofilerate 1048576 --blockprofilerate 1 --cpuprofile /tmp/geth-cpu-profile"
   ```
 
-#### Cleanup
+#### Uninstall
 
 Support for uninstalling and removing artifacts necessary for provisioning has been added and allows for users/operators to return a target host to its configured state prior to application of this role. This can be useful for returning hosts to known good configurations (LKG), recycling nodes and roles and perhaps providing more graceful/managed transitions between tooling upgrades.
 
-_The following variable(s) can be customized to manage this cleanup process:_
+_The following variable(s) can be customized to manage this uninstall process:_
 
 `perform_uninstall: <true | false>` (**default**: `false`)
 - whether to uninstall and remove all artifacts and remnants of this `geth` installation on a target host (**see**: `handlers/main.yml` for details)
