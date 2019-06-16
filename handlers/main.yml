@@ -42,21 +42,21 @@
     path: "{{ install_dir }}"
     state: absent
   become: true
-  when: perform_uninstall
+  when: "{{ perform_uninstall }}"
 
 - name: check config dir uninstall
   file:
     path: "{{ config_dir }}"
     state: absent
   become: true
-  when: perform_uninstall
+  when: "{{ perform_uninstall }}"
 
 - name: check data dir uninstall
   file:
     path: "{{ geth_config.Node.DataDir }}"
     state: absent
   become: true
-  when: perform_uninstall
+  when: "{{ perform_uninstall }}"
 
 # -------------------------------- #
 
