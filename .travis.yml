@@ -1,0 +1,13 @@
+---
+language: ruby
+rvm:
+  - 2.4.1
+
+services:
+  - docker
+
+before_install:
+  - bundle install
+
+script:
+  - bundle exec kitchen test install-source

@@ -3,6 +3,7 @@
 
 - name: restart geth
   service: name=geth state=restarted
+  when: manage_service
 
 #######  UNINSTALL operations #######
 
@@ -42,21 +43,21 @@
     path: "{{ install_dir }}"
     state: absent
   become: true
-  when: "{{ perform_uninstall }}"
+  when: perform_uninstall
 
 - name: check config dir uninstall
   file:
     path: "{{ config_dir }}"
     state: absent
   become: true
-  when: "{{ perform_uninstall }}"
+  when: perform_uninstall
 
 - name: check data dir uninstall
   file:
     path: "{{ geth_config.Node.DataDir }}"
     state: absent
   become: true
-  when: "{{ perform_uninstall }}"
+  when: perform_uninstall
 
 # -------------------------------- #
 
@@ -65,18 +66,18 @@
     name: geth
     state: stopped
     enabled: false
-  when: perform_uninstall and ansible_os_family != "Darwin"
+  when: perform_uninstall and manage_service and ansible_os_family != "Darwin"
 
 - name: check systemd service file uninstall
   file:
     path: "{{ systemd_dir }}/geth.service"
     state: absent
   become: true
-  when: perform_uninstall and ansible_os_family != "Darwin"
+  when: perform_uninstall and manage_service and ansible_os_family != "Darwin"
 
 - name: check launchd service uninstall
   file:
     path: "{{ launchd_dir }}/com.O1.geth.plist"
     state: absent
   become: true
-  when: perform_uninstall and ansible_os_family == "Darwin"
+  when: perform_uninstall and manage_service and ansible_os_family == "Darwin"

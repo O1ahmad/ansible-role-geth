@@ -1,6 +1,6 @@
 ---
 driver:
-  name: vagrant
+  name: docker
 
 transport:
   # TODO: remove with better solution than workaround:
@@ -19,17 +19,8 @@ verifier:
   name: inspec
 
 platforms:
-  # Redhat
-  - name: centos-7
-  - name: fedora-27
-  - name: fedora-28
-  - name: fedora-29
-  # Debian
-  - name: debian-8
-  - name: debian-9
-  - name: ubuntu-16.04
   - name: ubuntu-18.04
-  - name: ubuntu-18.10
+  - name: centos-7
 
 suites:
   - name: install_package
@@ -40,11 +31,6 @@ suites:
         - path: test/integration/install/install_package
     excludes:
       - centos-7
-      - fedora-27
-      - fedora-28
-      - fedora-29
-      - debian-8
-      - debian-9
 
   - name: install_source
     provisioner:
@@ -55,14 +41,7 @@ suites:
 
   - name: default_config
     provisioner:
-      playbook: test/integration/default_playbook.yml
+      playbook: test/integration/config/default_playbook.yml
     verifier:
       inspec_tests:
-        - path: test/integration/config/default
-
-  - name: default_service
-    provisioner:
-      playbook: test/integration/default_playbook.yml
-    verifier:
-      inspec_tests:
-        - path: test/integration/service/default
+        - path: test/integration/config
