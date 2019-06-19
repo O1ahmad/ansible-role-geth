@@ -1,10 +1,10 @@
 title "Geth package installation default test suite"
 
-describe user('geth') do
+describe user('test') do
   it { should exist }
 end
 
-describe group('geth') do
+describe group('test') do
   it { should exist }
 end
 
