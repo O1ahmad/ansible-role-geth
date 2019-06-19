@@ -19,8 +19,13 @@ verifier:
   name: inspec
 
 platforms:
-  - name: ubuntu-18.04
   - name: centos-7
+  - name: fedora-28
+  - name: fedora-29
+  - name: ubuntu-16.04
+  - name: ubuntu-18.04
+  - name: debian-8
+  - name: debian-9
 
 suites:
   - name: install_package
@@ -31,6 +36,10 @@ suites:
         - path: test/integration/install/install_package
     excludes:
       - centos-7
+      - fedora-28
+      - fedora-29
+      - debian-8
+      - debian-9
 
   - name: install_source
     provisioner:
