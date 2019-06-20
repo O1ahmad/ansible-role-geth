@@ -3,7 +3,7 @@
 
 - name: restart geth
   service: name=geth state=restarted
-  when: manage_service
+  when: manage_service|bool
 
 #######  UNINSTALL operations #######
 
@@ -43,7 +43,7 @@
     path: "{{ install_dir }}"
     state: absent
   become: true
-  when: perform_uninstall
+  when: perform_uninstall|bool
 
 - name: check config dir uninstall
   file:
@@ -57,7 +57,7 @@
     path: "{{ geth_config.Node.DataDir }}"
     state: absent
   become: true
-  when: perform_uninstall
+  when: perform_uninstall|bool
 
 # -------------------------------- #
 

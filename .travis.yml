@@ -6,8 +6,5 @@ rvm:
 services:
   - docker
 
-before_install:
-  - bundle install
-
 script:
-  - bundle exec kitchen test install-source
+  - bundle exec kitchen test install-source -c
