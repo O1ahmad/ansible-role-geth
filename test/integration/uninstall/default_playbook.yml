@@ -1,0 +1,9 @@
+---
+- name: Default playbook for testing Geth uninstallation
+  hosts: test-kitchen
+  roles:
+    - ansible-role-geth
+  vars:
+    install_type: source
+    manage_service: false
+    perform_uninstall: true
