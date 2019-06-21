@@ -3,9 +3,8 @@ Ansible Role :link: Geth
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-- [Ansible Role :link: Geth](#ansible-role-link-geth)
-        - [Supported Platforms:](#supported-platforms)
+**Table of Contents**
+  - [Supported Platforms](#supported-platforms)
   - [Requirements](#requirements)
   - [Role Variables](#role-variables)
       - [Install](#install)
@@ -97,7 +96,7 @@ Running the `geth` client and API server, either in its RPC, IPC or WS-RPC form,
 _The following variables can be customized to manage the location of the `geth` service definition and execution profile/policy:_
 
 `manage_service: <true | false>` (**default**: `true`)
-- whether to  manage `geth` service execution utilizing either the systemd or launchd service management tools.
+- whether to  manage `geth` service execution using either the systemd or launchd service management tools.
 
 `systemd_dir: </path/to/systemd/service/dir>` (**default**: see `/etc/systemd/system`)
 - path on target host where the `geth` **systemd** service file should be copied. **note:** while not advised and unlikely that you'll need or want to modify this location, support for variable definition is supplied to allow for flexible and user-defined organization of service definitions. __ONLY__ relevant on supported Linux platforms.
