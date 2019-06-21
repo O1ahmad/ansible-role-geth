@@ -1,7 +1,9 @@
+Ansible Role :link: Geth
+=========
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
 - [Ansible Role :link: Geth](#ansible-role-link-geth)
         - [Supported Platforms:](#supported-platforms)
   - [Requirements](#requirements)
@@ -14,11 +16,7 @@
   - [Example Playbook](#example-playbook)
   - [License](#license)
   - [Author Information](#author-information)
-
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-Ansible Role :link: Geth
-=========
 
 Ansible role that installs, configures and runs [Geth](https://geth.ethereum.org/): a command-line interface and API server for operating an ethereum node.
 
