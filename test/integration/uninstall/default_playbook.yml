@@ -5,5 +5,5 @@
     - ansible-role-geth
   vars:
     install_type: source
-    manage_service: false
+    manage_service: true
     perform_uninstall: true
