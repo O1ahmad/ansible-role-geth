@@ -3,9 +3,6 @@
 geth_user: geth
 
 install_type: source
-manage_service: true
-perform_uninstall: false
-
 install_src: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.8.27-4bcc0a37.tar.gz
 install_dir: /opt/geth
 
@@ -18,9 +15,13 @@ geth_config:
   Node:
     DataDir: /var/geth
 
+manage_service: true
+
 systemd_template: geth.service.j2
 systemd_dir: /etc/systemd/system/
 launchd_template: com.O1.geth.plist.j2
 launchd_dir: /Library/Agents
 
 extra_run_args: '--rpc'
+
+perform_uninstall: false

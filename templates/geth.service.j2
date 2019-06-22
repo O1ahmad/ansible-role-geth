@@ -5,7 +5,7 @@ After=syslog.target network.target
 [Service]
 User={{ geth_user }}
 Group={{ geth_user }}
-Environment=HOME=/home/geth
+Environment=HOME=/home/{{ geth_user }}
 Type=simple
 ExecStart={{ install_dir }}/geth {% if geth_config %}--config {{ config_dir }}/config.toml{% endif %} {{ extra_run_args }}
 KillMode=process

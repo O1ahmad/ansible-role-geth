@@ -50,7 +50,7 @@
     path: "{{ config_dir }}"
     state: absent
   become: true
-  when: perform_uninstall
+  when: perform_uninstall|bool
 
 - name: check data dir uninstall
   file:

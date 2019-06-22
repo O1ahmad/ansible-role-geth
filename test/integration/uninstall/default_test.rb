@@ -1,3 +1,5 @@
+title "Geth client/service uninstallation default test suite"
+
 describe user('test') do
   it { should_not exist }
 end

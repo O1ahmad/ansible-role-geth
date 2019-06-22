@@ -8,7 +8,7 @@
     owner: "{{ geth_user }}"
     group: "{{ geth_user }}"
   become: true
-  when: geth_config|bool
+  when: geth_config is not none
   notify:
     - check config dir uninstall
 
@@ -20,7 +20,7 @@
     group: "{{ geth_user }}"
     mode: 0644
   become: true
-  when: geth_config|bool
+  when: geth_config is not none
   notify:
     - restart geth
     - check config dir uninstall
@@ -32,6 +32,6 @@
     owner: "{{ geth_user }}"
     group: "{{ geth_user }}"
   become: true
-  when: geth_config|bool
+  when: geth_config is not none
   notify:
     - check data dir uninstall

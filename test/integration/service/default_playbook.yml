@@ -5,10 +5,4 @@
     - ansible-role-geth
   vars:
     install_type: source
-    geth_config:
-      Eth:
-        SyncMode: full
-        LightPeers: 20
-      Node:
-        HTTPModules: ["net", "web3", "eth", "shh"]
-        DataDir: /var/test
+    manage_service: true
