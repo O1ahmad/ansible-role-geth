@@ -5,10 +5,10 @@ group :test do
 end
 
 group :integration do
-  gem 'concurrent-ruby', '~> 1.0'
+  gem 'concurrent-ruby'
   gem 'kitchen-ansible'
   gem 'kitchen-docker'
   gem 'kitchen-inspec'
   gem 'kitchen-vagrant'
-  gem 'test-kitchen', '~> 1.4'
+  gem 'test-kitchen'
 end
