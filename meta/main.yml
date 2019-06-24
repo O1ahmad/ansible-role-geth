@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Ahmad Wilson
+  role_name: geth
   description: Geth (Go-Ethereum), a Go-based Ethereum client installation for Linux and MacOs.
   company: "O1 Labs"
   license: license (Apache, BSD, MIT)
@@ -8,11 +9,11 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-        - 6
         - 7
     - name: Debian
       versions:
-        - all
+        - jessie
+        - stretch
     - name: Ubuntu
       versions:
         - xenial
