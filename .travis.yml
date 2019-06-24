@@ -6,6 +6,10 @@ rvm:
 services:
   - docker
 
+env:
+  global:
+    - ROLE_NAME: geth
+
 before_script:
   - sudo pip install ansible-lint yamllint
 
