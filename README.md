@@ -23,9 +23,10 @@ Ansible role that installs, configures and runs [Geth](https://geth.ethereum.org
 
 ##### Supported Platforms:
 ```
-* CentOS/Fedora/RHEL
-* Debian/Ubuntu
+* Debian
 * MacOS
+* Redhat(CentOS/Fedora)
+* Ubuntu
 ```
 
 Requirements
