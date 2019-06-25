@@ -28,7 +28,5 @@
   template:
     src: "{{ launchd_template }}"
     dest: "{{ launchd_dir }}/com.O1.geth.plist"
-    owner: "root"
-    group: "root"
   become: true
   when: ansible_os_family == "Darwin" and manage_service
