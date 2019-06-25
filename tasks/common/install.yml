@@ -46,4 +46,4 @@
     dest: /etc/profile.d/custom-path.sh
     content: 'PATH=$PATH:{{ install_dir }}'
   become: true
-  when: install_type == "source"
+  when: install_type == "source" and ansible_os_family != "Darwin"
