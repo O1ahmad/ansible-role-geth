@@ -149,14 +149,14 @@ Basic setup with defaults:
 ```
 - hosts: all
   roles:
-  - role: 0xO1.geth
+  - role: 0xOI.geth
 ```
 
 Launch an Ethereum light client and connect it to the Rinkeby PoA (Proof of Authority) test network:
 ```
 - hosts: light-client
   roles:
-  - role: 0xO1.geth
+  - role: 0xOI.geth
     vars:
       geth_config:
         Eth:
@@ -168,7 +168,7 @@ Run a full Ethereum node using "fast" sync-mode (only process most recent transa
 ```
 - hosts: full-node
   roles:
-  - role: 0xO1.geth
+  - role: 0xOI.geth
     vars:
       geth_config:
         Eth:
