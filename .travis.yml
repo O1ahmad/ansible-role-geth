@@ -17,3 +17,6 @@ script:
   - ansible-lint -c ./test/lint/.ansible-lint .
   - yamllint --config-file ./test/lint/yaml-lint.yml .
   - bundle exec kitchen test install-source --concurrency
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
