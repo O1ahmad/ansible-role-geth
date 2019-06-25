@@ -20,7 +20,7 @@ manage_service: true
 systemd_template: geth.service.j2
 systemd_dir: /etc/systemd/system/
 launchd_template: com.O1.geth.plist.j2
-launchd_dir: /Library/Agents
+launchd_dir: /Library/LaunchAgents
 
 extra_run_args: '--rpc'
 
