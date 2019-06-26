@@ -102,10 +102,10 @@ _The following variables can be customized to manage the location of the `geth` 
 `manage_service: <true | false>` (**default**: `true`)
 - whether to  manage `geth` service execution using either the systemd or launchd service management tools.
 
-`systemd_dir: </path/to/systemd/service/dir>` (**default**: see `/etc/systemd/system`)
+`systemd_dir: </path/to/systemd/service/dir>` (**default**: `/etc/systemd/system`)
 - path on target host where the `geth` **systemd** service file should be copied. **note:** while not advised and unlikely that you'll need or want to modify this location, support for variable definition is supplied to allow for flexible and user-defined organization of service definitions. __ONLY__ relevant on supported Linux platforms.
 
-`launchd_dir: </path/to/launchd/job-definition/dir>` (**default**: see `/Library/LaunchDaemons`)
+`launchd_dir: </path/to/launchd/job-definition/dir>` (**default**: `/Library/LaunchDaemons`)
 - path on target host where the `geth` **launchd** job definition file should be copied. **note:** while not advised and unlikely that you'll need or want to modify this location, support for variable definition is supplied to allow for flexible and user-defined organization of job definitions. ONLY relevant on MacOS.
 
 `extra_run_args: <geth-cli-options>` (**default**: see `defaults/main.yml`)
