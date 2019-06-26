@@ -1,6 +1,7 @@
 Ansible Role :link: Geth
 =========
-
+[![Galaxy Role](https://img.shields.io/ansible/role/41457.svg)](https://galaxy.ansible.com/0x0I/geth)
+[![Downloads](https://img.shields.io/ansible/role/d/41457.svg)](https://galaxy.ansible.com/0x0I/geth)
 [![Build Status](https://travis-ci.org/0x0I/ansible-role-geth.svg?branch=master)](https://travis-ci.org/0x0I/ansible-role-geth)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
