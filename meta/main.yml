@@ -19,6 +19,9 @@ galaxy_info:
         - 27
         - 28
         - 29
+    - name: MacOSX
+      versions:
+        - all
     - name: Ubuntu
       versions:
         - xenial
