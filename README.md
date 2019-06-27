@@ -57,7 +57,7 @@ _The following variables can be customized to control various aspects of this in
 `install_src: <path-or-url-to-src>` (**default**: see `defaults/main.yml`)
 - address of a compressed **tar or zip** package containing `geth` binaries. This method technically supports installation of any available version of `geth`. Links to official versions can be found [here](https://geth.ethereum.org/downloads/).
 
-`install_dir: </path/to/installation/dir>` (**default**: see `defaults/main.yml | vars/main.yml`)
+`install_dir: </path/to/installation/dir>` (**default**: see `defaults/main.yml | vars/...`)
 - path on target host where the `geth` binaries should be extracted to
 
 #### Config
@@ -66,10 +66,10 @@ Configuration of the `geth` client can be expressed in a config file written in 
 
 _The following variables can be customized to manage the location and content of this TOML configuration:_
 
-`config_dir: </path/to/configuration/dir>` (**default**: see `/etc/geth`)
+`config_dir: </path/to/configuration/dir>` (**default**: `/etc/geth`)
 - path on target host where the `geth` TOML configuration should be stored
 
-`geth_config: {"<config-section>": {"<section-setting>": "<setting-value>",..},..}` **default**: see `vars/...`
+`geth_config: {"<config-section>": {"<section-setting>": "<setting-value>",..},..}` **default**: see `defaults/main.yml`
 
 * Any configuration setting/value key-pair supported by `geth` should be expressible within the `geth_config` hash and properly rendered within the associated TOML config. Values can be expressed in typical _yaml/ansible_ form (e.g. Strings, numbers and true/false values should be written as is and without quotes).
 
@@ -112,6 +112,8 @@ _The following variables can be customized to manage the location of the `geth` 
 - list of `geth` commandline arguments to pass to the binary at runtime for customizing launch. Supporting full expression of `geth`'s cli, this variable enables the role of target hosts to be customized according to the user's specification; whether to activate a particular API protocol listener, connect to a pre-configured Ethereum test or production network or whatever is supported by `geth`.
 
   A list of available command-line options can be found [here](https://gist.github.com/0x0I/a06e231d4fd0509ddf3a44f8499a2941).
+
+##### Examples
 
   Connect to either the Ropsten PoW(proof-of-work) or Rinkeby PoA(proof-of-authory) pre-configured test network:
   ```
