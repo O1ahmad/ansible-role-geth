@@ -21,5 +21,9 @@ describe directory('/var/geth') do
 end
 
 describe service('geth') do
-  it { should_not be_installed }
+  it { should_not be_running }
+end
+
+describe file('/etc/systemd/system/geth.service') do
+  it { should_not exist }
 end
