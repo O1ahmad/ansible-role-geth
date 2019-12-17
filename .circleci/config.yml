@@ -7,10 +7,10 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Set ruby version to 2.4.4
+          name: Set ruby version to 2.6.3
           command: |
-           rvm install 2.4.4
-           echo . $(rvm 2.4.4 do rvm env --path) >> $BASH_ENV
+           rvm install 2.6.3
+           echo . $(rvm 2.6.3 do rvm env --path) >> $BASH_ENV
       - run:
           name: Install latest version of bundler gem
           command: gem install bundler

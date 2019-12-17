@@ -36,9 +36,6 @@ platforms:
   - name: fedora-28
     driver_config:
       <<: *default_driver_config
-  - name: fedora-29
-    driver_config:
-      <<: *default_driver_config
   - name: ubuntu-16.04
     driver_config:
       <<: *default_driver_config
@@ -82,7 +79,6 @@ suites:
     excludes:
       - centos-7
       - fedora-28
-      - fedora-29
       - debian-8
       - debian-9
 
