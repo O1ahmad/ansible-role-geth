@@ -1,3 +1,5 @@
+<p><img src="https://img.favpng.com/4/19/4/ethereum-logo-cryptocurrency-bitcoin-blockchain-png-favpng-mkTqiXa1zAkLM5jM0qGZCrrrB.jpg" alt="ethereum logo" title="ethereum" align="right" height="60" /></p>
+
 Ansible Role :link: Geth
 =========
 [![Galaxy Role](https://img.shields.io/ansible/role/41457.svg)](https://galaxy.ansible.com/0x0I/geth)
