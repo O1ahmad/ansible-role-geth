@@ -1,4 +1,4 @@
-<p><img src="https://www.pinclipart.com/picdir/middle/142-1426563_ethereum-icon-line-symbol-isolated-vector-stock-vector.png" alt="ethereum logo" title="ethereum" align="right" height="90" /></p>
+<p><img src="https://retohercules.com/images/ethereum-png-11.png" alt="ethereum logo" title="ethereum" align="right" height="90" /></p>
 
 Ansible Role :link: Geth
 =========
