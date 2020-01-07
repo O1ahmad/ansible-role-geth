@@ -36,6 +36,26 @@ platforms:
   - name: fedora-28
     driver_config:
       <<: *default_driver_config
+  - name: fedora-30
+    driver_config:
+      <<: *default_driver_config
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable sshd.service
+        - yum -y install python-pip net-tools
+    provisioner:
+      require_pip: true
+      ansible_cfg_path: test/ansible.cfg
+  - name: fedora-31
+    driver_config:
+      <<: *default_driver_config
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable sshd.service
+        - yum -y install python-pip net-tools
+    provisioner:
+      require_pip: true
+      ansible_cfg_path: test/ansible.cfg
   - name: ubuntu-16.04
     driver_config:
       <<: *default_driver_config
