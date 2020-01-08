@@ -51,6 +51,9 @@ Variables are available and organized according to the following software & mach
 
 _The following variables can be customized to control various aspects of this installation process, ranging from software version and the source location of binaries to the installation directory where they are stored:_
 
+`geth_user: <service-user-name>` (**default**: *geth*)
+- dedicated service user and group used by `geth` for privilege separation (see [here](https://www.beyondtrust.com/blog/entry/how-separation-privilege-improves-security) for details)
+
 `install_type: <package | source>` (**default**: source)
 - **package**: ONLY supported by Ubuntu and MacOS, package installation of Geth pulls the lastest package available for either platform from the [Ubuntu PPA](https://launchpad.net/~ethereum/+archive/ubuntu/ethereum/+packages) (Personal Package Archive) or the [Mac Homebrew formulae repository](https://formulae.brew.sh/formula/ethereum).
   - Note that the installation directory is determined by the package management system and currently defaults to `/usr/bin/geth` for Linux and `/usr/local/bin/geth` for MacOS. Attempts to set and execute a package installation on other Linux distros will result in failure due to lack of support.

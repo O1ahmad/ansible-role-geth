@@ -2,17 +2,21 @@
 #######  Authentication setup #######
 
 - name: Ensure Geth group exists
+  become: true
   group:
     name: "{{ geth_user }}"
     state: present
-  become: true
+    system: true
 
 - name: Create Geth user
+  become: true
   user:
     comment: Geth client account
     name: "{{ geth_user }}"
     group: "{{ geth_user }}"
-  become: true
+    shell: "/sbin/nologin"
+    system: true
+    create_home: false
 
 #######  Source installation #######
 
