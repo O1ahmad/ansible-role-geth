@@ -23,5 +23,6 @@ launchd_template: com.O1.geth.plist.j2
 launchd_dir: /Library/LaunchAgents
 
 extra_run_args: '--rpc'
+custom_unit_properties: {}
 
 perform_uninstall: false

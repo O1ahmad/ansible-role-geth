@@ -22,4 +22,4 @@
   include_tasks: "common/config.yml"
 
 - name: Start Geth client and RPC service
-  include_tasks: "common/service.yml"
+  include_tasks: "common/launch.yml"

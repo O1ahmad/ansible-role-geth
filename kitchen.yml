@@ -25,6 +25,7 @@ provisioner:
   name: ansible_playbook
   ansible_verbosity: 4
   ansible_verbose: true
+  requirements_path: test/requirements-test.yml
 
 verifier:
   name: inspec

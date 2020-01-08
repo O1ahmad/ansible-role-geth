@@ -1,0 +1,47 @@
+---
+#######  Systemd service setup #######
+
+- name: Set unit [Service] configuration
+  set_fact:
+    default_service_unit:
+      ExecStart: "{{ install_dir }}/geth {% if geth_config %}--config {{ config_dir }}/config.toml{% endif %} {{ extra_run_args }}"
+      User: "{{ geth_user }}"
+      Group: "{{ geth_user }}"
+      StandardOutput: journal
+      StandardError: inherit
+  when: ansible_os_family != "Darwin" and manage_service
+
+- name: Setup Geth systemd unit
+  include_role:
+    name: 0x0i.systemd
+  vars:
+    unit_config:
+      - name: geth
+        Unit:
+          Description: Geth - an Ethereum Go client
+          Documentation: https://geth.ethereum.org/docs/
+          Wants: network-online.target
+          After: syslog.target network-online.target
+        Service: "{{ default_service_unit | combine(custom_unit_properties) }}"
+        Install:
+          WantedBy: multi-user.target
+  when: ansible_os_family != "Darwin" and manage_service
+
+- name: Enable and start Geth service
+  service:
+    name: geth
+    state: started
+    enabled: true
+  become: true
+  when: ansible_os_family != "Darwin" and manage_service
+  notify:
+    - check systemd service uninstall
+
+#######  Launchd service setup #######
+
+- name: Render Geth launchd service plist in place
+  template:
+    src: "{{ launchd_template }}"
+    dest: "{{ launchd_dir }}/com.O1.geth.plist"
+  become: true
+  when: ansible_os_family == "Darwin" and manage_service
