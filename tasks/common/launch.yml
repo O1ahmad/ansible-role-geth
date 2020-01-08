@@ -1,16 +1,4 @@
 ---
-#######  Systemd service setup #######
-
-- name: Set unit [Service] configuration
-  set_fact:
-    default_service_unit:
-      ExecStart: "{{ install_dir }}/geth {% if geth_config %}--config {{ config_dir }}/config.toml{% endif %} {{ extra_run_args }}"
-      User: "{{ geth_user }}"
-      Group: "{{ geth_user }}"
-      StandardOutput: journal
-      StandardError: inherit
-  when: ansible_os_family != "Darwin" and manage_service
-
 - name: Setup Geth systemd unit
   include_role:
     name: 0x0i.systemd
@@ -28,20 +16,18 @@
   when: ansible_os_family != "Darwin" and manage_service
 
 - name: Enable and start Geth service
+  become: true
   service:
     name: geth
     state: started
     enabled: true
-  become: true
   when: ansible_os_family != "Darwin" and manage_service
   notify:
     - check systemd service uninstall
 
-#######  Launchd service setup #######
-
 - name: Render Geth launchd service plist in place
+  become: true
   template:
     src: "{{ launchd_template }}"
     dest: "{{ launchd_dir }}/com.O1.geth.plist"
-  become: true
   when: ansible_os_family == "Darwin" and manage_service
