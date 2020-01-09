@@ -1,6 +1,4 @@
 ---
-#######  Authentication setup #######
-
 - name: Ensure Geth group exists
   become: true
   group:
@@ -17,8 +15,6 @@
     shell: "/sbin/nologin"
     system: true
     create_home: false
-
-#######  Source installation #######
 
 - name: Create installation directory
   file:

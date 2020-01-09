@@ -1,37 +1,34 @@
 ---
-# Geth configuration rendering
-
 - name: Create configuration directory
+  become: true
   file:
     path: "{{ config_dir }}"
     state: directory
     owner: "{{ geth_user }}"
     group: "{{ geth_user }}"
-  become: true
-  when: geth_config is not none
   notify:
     - check config dir uninstall
 
 - name: Copy Geth configuration in place
+  become: true
   template:
     src: "{{ config_template }}"
     dest: "{{ config_dir }}/config.toml"
     owner: "{{ geth_user }}"
     group: "{{ geth_user }}"
     mode: 0644
-  become: true
-  when: geth_config is not none
+  when: geth_config is defined and geth_config.keys()|length > 0
   notify:
     - restart geth
     - check config dir uninstall
 
 - name: Ensure creation of data directory based on configuration
+  become: true
   file:
     path: "{{ geth_config.Node.DataDir }}"
     state: directory
     owner: "{{ geth_user }}"
     group: "{{ geth_user }}"
-  become: true
-  when: geth_config is not none
+  when: geth_config is defined and geth_config.Node.DataDir|length > 0
   notify:
     - check data dir uninstall

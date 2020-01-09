@@ -110,21 +110,21 @@ suites:
       inspec_tests:
         - path: test/integration/install/install_source
 
-  - name: default_config
+  - name: config
     provisioner:
       playbook: test/integration/config/default_playbook.yml
     verifier:
       inspec_tests:
         - path: test/integration/config
 
-  - name: default_service
+  - name: launch_service
     provisioner:
-      playbook: test/integration/service/default_playbook.yml
+      playbook: test/integration/launch/default_playbook.yml
     verifier:
       inspec_tests:
-        - path: test/integration/service
+        - path: test/integration/launch
 
-  - name: default_uninstall
+  - name: uninstall
     provisioner:
       playbook: test/integration/uninstall/default_playbook.yml
     verifier:
