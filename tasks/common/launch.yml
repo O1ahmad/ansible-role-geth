@@ -10,7 +10,7 @@
           Documentation: https://geth.ethereum.org/docs/
           Wants: network-online.target
           After: syslog.target network-online.target
-        Service: "{{ default_service_unit | combine(custom_unit_properties) }}"
+        Service: "{{ _default_service_unit | combine(custom_unit_properties) }}"
         Install:
           WantedBy: multi-user.target
   when: ansible_os_family != "Darwin" and manage_service
@@ -28,6 +28,6 @@
 - name: Render Geth launchd service plist in place
   become: true
   template:
-    src: "{{ launchd_template }}"
+    src: "{{ _launchd_template }}"
     dest: "{{ launchd_dir }}/com.O1.geth.plist"
   when: ansible_os_family == "Darwin" and manage_service

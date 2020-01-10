@@ -12,7 +12,7 @@
 - name: Copy Geth configuration in place
   become: true
   template:
-    src: "{{ config_template }}"
+    src: "{{ _config_template }}"
     dest: "{{ config_dir }}/config.toml"
     owner: "{{ geth_user }}"
     group: "{{ geth_user }}"
