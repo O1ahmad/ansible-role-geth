@@ -29,6 +29,6 @@
     state: directory
     owner: "{{ geth_user }}"
     group: "{{ geth_user }}"
-  when: geth_config is defined and geth_config.Node.DataDir|length > 0
+  when: geth_config.Node.DataDir is defined and geth_config.Node.DataDir|length > 0
   notify:
     - check data dir uninstall

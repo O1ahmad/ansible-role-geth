@@ -2,7 +2,7 @@
 geth_user: geth
 
 install_type: source
-install_src: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.8.27-4bcc0a37.tar.gz
+install_src: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.9.9-01744997.tar.gz
 install_dir: /opt/geth
 
 _config_template: config.toml.j2
