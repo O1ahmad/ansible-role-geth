@@ -10,4 +10,4 @@
     geth_config:
       Node:
         DataDir: /var/data/geth
-    extra_run_args: '--rinkeby --verbosity 4 --syncmode "full"'
+    extra_run_args: '--rinkeby --verbosity 3 --syncmode "full"'

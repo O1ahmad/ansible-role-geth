@@ -6,6 +6,10 @@
   when: install_type == "package"
   notify:
     - check homebrew-tap uninstall
+  tags:
+    - install
+    - package
+    - darwin
 
 - name: Install geth homebrew package
   homebrew:
@@ -14,3 +18,7 @@
   when: install_type == "package"
   notify:
     - check homebrew-package uninstall
+  tags:
+    - install
+    - package
+    - darwin

@@ -14,6 +14,8 @@
         Install:
           WantedBy: multi-user.target
   when: ansible_os_family != "Darwin" and manage_service
+  tags:
+    - launch
 
 - name: Enable and start Geth service
   become: true
@@ -24,6 +26,8 @@
   when: ansible_os_family != "Darwin" and manage_service
   notify:
     - check systemd service uninstall
+  tags:
+    - launch
 
 - name: Render Geth launchd service plist in place
   become: true
@@ -31,3 +35,6 @@
     src: "{{ _launchd_template }}"
     dest: "{{ launchd_dir }}/com.O1.geth.plist"
   when: ansible_os_family == "Darwin" and manage_service
+  tags:
+    - launch
+    - darwin

@@ -8,6 +8,8 @@
     group: "{{ geth_user }}"
   notify:
     - check config dir uninstall
+  tags:
+    - config
 
 - name: Copy Geth configuration in place
   become: true
@@ -21,6 +23,8 @@
   notify:
     - restart geth
     - check config dir uninstall
+  tags:
+    - config
 
 - name: Ensure creation of data directory based on configuration
   become: true
@@ -32,3 +36,6 @@
   when: geth_config.Node.DataDir is defined and geth_config.Node.DataDir|length > 0
   notify:
     - check data dir uninstall
+  tags:
+    - config
+    - data
