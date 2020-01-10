@@ -1,12 +1,11 @@
 ---
-# defaults variable file for geth
 geth_user: geth
 
 install_type: source
 install_src: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.8.27-4bcc0a37.tar.gz
 install_dir: /opt/geth
 
-config_template: config.toml.j2
+_config_template: config.toml.j2
 config_dir: /etc/geth
 
 geth_config:
@@ -17,9 +16,8 @@ geth_config:
 
 manage_service: true
 
-systemd_template: geth.service.j2
 systemd_dir: /etc/systemd/system/
-launchd_template: com.O1.geth.plist.j2
+_launchd_template: com.O1.geth.plist.j2
 launchd_dir: /Library/LaunchAgents
 
 extra_run_args: '--rpc'
