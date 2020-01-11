@@ -5,6 +5,8 @@
     name: "{{ geth_user }}"
     state: present
     system: true
+  tags:
+    - install
 
 - name: Create Geth user
   become: true
@@ -15,6 +17,8 @@
     shell: "/sbin/nologin"
     system: true
     create_home: false
+  tags:
+    - install
 
 - name: Create installation directory
   file:
@@ -26,6 +30,8 @@
   when: install_type == "source"
   notify:
     - check install dir uninstall
+  tags:
+    - install
 
 - name: Extract Geth source
   unarchive:
@@ -40,6 +46,9 @@
       - '1'
   become: true
   when: install_type == "source"
+  tags:
+    - install
+    - source
 
 - name: Add installation dir to system-wide $PATH
   copy:
@@ -47,3 +56,6 @@
     content: 'PATH=$PATH:{{ install_dir }}'
   become: true
   when: install_type == "source" and ansible_os_family != "Darwin"
+  tags:
+    - install
+    - source

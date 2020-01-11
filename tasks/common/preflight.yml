@@ -8,3 +8,5 @@
       StandardOutput: journal
       StandardError: inherit
   when: ansible_os_family != "Darwin" and manage_service
+  tags:
+    - preflight
