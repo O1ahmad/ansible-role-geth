@@ -7,7 +7,7 @@
         - "{{ ansible_os_family }}.yml"
       skip: true
   tags:
-    - vars
+    - always
 
 - name: Include preflight setup tasks
   include_tasks: "common/preflight.yml"
