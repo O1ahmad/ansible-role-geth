@@ -1,83 +1,95 @@
 ---
-#######  RESTART operations #######
+- name: Restart geth service
+  service:
+    name: geth
+    state: restarted
+  listen: Restart service
+  when: not perform_uninstall and ansible_os_family|lower != 'darwin'
 
-- name: restart geth
-  service: name=geth state=restarted
-  when: manage_service|bool
-
-#######  UNINSTALL operations #######
-
-- name: check package-repo uninstall
+- name: Uninstall geth apt-repo
+  become: true
   apt_repository:
     repo: 'ppa:ethereum/ethereum'
     state: absent
-    update_cache: true
-  become: true
-  when: perform_uninstall and install_type == "package" and ansible_distribution == "Ubuntu"
+  listen: Uninstall Geth
+  when: ansible_os_family|lower == 'debian'
 
-- name: check package uninstall
+- name: Uninstall geth service package
   package:
     name: ethereum
     state: absent
   become: true
-  when: perform_uninstall and install_type == "package" and ansible_distribution == "Ubuntu"
+  listen: Uninstall Geth
+  when: ansible_os_family|lower != 'darwin'
 
-# -------------------------------- #
-
-- name: check homebrew-tap uninstall
+- name: Uninstall geth homebrew-tap
   homebrew_tap:
     name: ethereum/ethereum
     state: absent
-  when: perform_uninstall and install_type == "package" and ansible_os_family == "Darwin"
+  listen: Uninstall Geth
+  when: ansible_os_family|lower == 'darwin'
 
-- name: check homebrew-package uninstall
+- name: Uninstall geth homebrew-package
   homebrew:
     name: ethereum
     state: absent
-  when: perform_uninstall and install_type == "package" and ansible_os_family == "Darwin"
+  listen: Uninstall Geth
+  when: ansible_os_family|lower == 'darwin'
 
-# -------------------------------- #
-
-- name: check install dir uninstall
+- name: Remove geth install dir
   file:
     path: "{{ install_dir }}"
     state: absent
   become: true
-  when: perform_uninstall|bool
+  listen: Uninstall Geth
 
-- name: check config dir uninstall
+- name: Remove geth config dir
   file:
     path: "{{ config_dir }}"
     state: absent
   become: true
-  when: perform_uninstall|bool
+  listen: Uninstall Geth
 
-- name: check data dir uninstall
+- name: Remove geth data dir
   file:
     path: "{{ geth_config.Node.DataDir }}"
     state: absent
   become: true
-  when: perform_uninstall|bool
+  listen: Uninstall Geth
 
-# -------------------------------- #
-
-- name: check systemd service uninstall
+- name: Stop geth systemd service
   service:
     name: geth
     state: stopped
     enabled: false
-  when: perform_uninstall and manage_service and ansible_os_family != "Darwin"
+  listen: Uninstall Geth
+  when: ansible_os_family|lower != 'darwin'
 
-- name: check systemd service file uninstall
+- name: Remove geth systemd service file
+  become: true
   file:
     path: "{{ systemd_dir }}/geth.service"
     state: absent
-  become: true
-  when: perform_uninstall and manage_service and ansible_os_family != "Darwin"
+  listen: Uninstall Geth
+  when: ansible_os_family|lower != 'darwin'
 
-- name: check launchd service uninstall
+- name: Remove geth launchd service file
   file:
     path: "{{ launchd_dir }}/com.O1.geth.plist"
     state: absent
   become: true
-  when: perform_uninstall and manage_service and ansible_os_family == "Darwin"
+  listen: Uninstall Geth
+  when: ansible_os_family|lower == 'darwin'
+
+- name: Remove geth user
+  user:
+    name: "{{ geth_user }}"
+    state: absent
+    remove: true
+  listen: Uninstall Geth
+
+- name: Remove geth group
+  group:
+    name: "{{ geth_user }}"
+    state: absent
+  listen: Uninstall Geth

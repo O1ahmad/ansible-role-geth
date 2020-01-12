@@ -8,7 +8,7 @@
     - package
     - debian
 
-- name: Update apt cache.
+- name: Update apt cache
   apt: update_cache=yes cache_valid_time=86400
   changed_when: false
   when: install_type == "package"
@@ -24,8 +24,6 @@
     update_cache: true
   become: true
   when: install_type == "package" and ansible_distribution == "Ubuntu"
-  notify:
-    - check package-repo uninstall
   tags:
     - install
     - package
@@ -37,8 +35,6 @@
     state: present
   become: true
   when: install_type == "package"
-  notify:
-    - check package uninstall
   tags:
     - install
     - package

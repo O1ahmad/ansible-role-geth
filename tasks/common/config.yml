@@ -6,8 +6,6 @@
     state: directory
     owner: "{{ geth_user }}"
     group: "{{ geth_user }}"
-  notify:
-    - check config dir uninstall
   tags:
     - config
 
@@ -21,8 +19,7 @@
     mode: 0644
   when: geth_config is defined and geth_config.keys()|length > 0
   notify:
-    - restart geth
-    - check config dir uninstall
+    - Restart service
   tags:
     - config
 
@@ -34,8 +31,6 @@
     owner: "{{ geth_user }}"
     group: "{{ geth_user }}"
   when: geth_config.Node.DataDir is defined and geth_config.Node.DataDir|length > 0
-  notify:
-    - check data dir uninstall
   tags:
     - config
     - data

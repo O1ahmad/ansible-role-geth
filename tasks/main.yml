@@ -1,4 +1,13 @@
 ---
+- name: Check for uninstall signal
+  command: /bin/true
+  notify: Uninstall Geth
+  when: perform_uninstall
+
+- name: End play following uninstallation
+  meta: end_play
+  when: perform_uninstall
+
 - name: Include OS and distribution specific variables.
   include_vars: "{{ item }}"
   with_first_found:
