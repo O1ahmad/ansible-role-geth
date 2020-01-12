@@ -28,8 +28,6 @@
     group: "{{ geth_user }}"
   become: true
   when: install_type == "source"
-  notify:
-    - check install dir uninstall
   tags:
     - install
 

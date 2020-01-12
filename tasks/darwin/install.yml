@@ -4,8 +4,6 @@
     name: ethereum/ethereum
     state: present
   when: install_type == "package"
-  notify:
-    - check homebrew-tap uninstall
   tags:
     - install
     - package
@@ -16,8 +14,6 @@
     name: ethereum
     state: present
   when: install_type == "package"
-  notify:
-    - check homebrew-package uninstall
   tags:
     - install
     - package

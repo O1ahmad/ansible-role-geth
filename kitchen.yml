@@ -102,28 +102,24 @@ suites:
       - fedora-28
       - debian-8
       - debian-9
-
   - name: install_source
     provisioner:
       playbook: test/integration/install/install_source/default_playbook.yml
     verifier:
       inspec_tests:
         - path: test/integration/install/install_source
-
   - name: config
     provisioner:
       playbook: test/integration/config/default_playbook.yml
     verifier:
       inspec_tests:
         - path: test/integration/config
-
   - name: launch_service
     provisioner:
       playbook: test/integration/launch/default_playbook.yml
     verifier:
       inspec_tests:
         - path: test/integration/launch
-
   - name: uninstall
     provisioner:
       playbook: test/integration/uninstall/default_playbook.yml

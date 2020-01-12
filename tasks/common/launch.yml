@@ -24,8 +24,6 @@
     state: started
     enabled: true
   when: ansible_os_family != "Darwin" and manage_service
-  notify:
-    - check systemd service uninstall
   tags:
     - launch
 
