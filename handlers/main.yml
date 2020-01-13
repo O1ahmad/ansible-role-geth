@@ -6,13 +6,29 @@
   listen: Restart service
   when: not perform_uninstall and ansible_os_family|lower != 'darwin'
 
-- name: Uninstall geth apt-repo
+- name: Stop geth systemd service
+  service:
+    name: geth
+    state: stopped
+    enabled: false
+  listen: Uninstall Geth
+  when: ansible_os_family|lower != 'darwin'
+
+- name: Remove geth systemd service file
   become: true
-  apt_repository:
-    repo: 'ppa:ethereum/ethereum'
+  file:
+    path: "{{ systemd_dir }}/geth.service"
     state: absent
   listen: Uninstall Geth
-  when: ansible_os_family|lower == 'debian'
+  when: ansible_os_family|lower != 'darwin'
+
+- name: Remove geth launchd service file
+  file:
+    path: "{{ launchd_dir }}/com.O1.geth.plist"
+    state: absent
+  become: true
+  listen: Uninstall Geth
+  when: ansible_os_family|lower == 'darwin'
 
 - name: Uninstall geth service package
   package:
@@ -22,16 +38,24 @@
   listen: Uninstall Geth
   when: ansible_os_family|lower != 'darwin'
 
-- name: Uninstall geth homebrew-tap
-  homebrew_tap:
-    name: ethereum/ethereum
+- name: Uninstall geth homebrew-package
+  homebrew:
+    name: ethereum
     state: absent
   listen: Uninstall Geth
   when: ansible_os_family|lower == 'darwin'
 
-- name: Uninstall geth homebrew-package
-  homebrew:
-    name: ethereum
+- name: Uninstall geth apt-repo
+  become: true
+  apt_repository:
+    repo: 'ppa:ethereum/ethereum'
+    state: absent
+  listen: Uninstall Geth
+  when: ansible_os_family|lower == 'debian'
+
+- name: Uninstall geth homebrew-tap
+  homebrew_tap:
+    name: ethereum/ethereum
     state: absent
   listen: Uninstall Geth
   when: ansible_os_family|lower == 'darwin'
@@ -56,30 +80,6 @@
     state: absent
   become: true
   listen: Uninstall Geth
-
-- name: Stop geth systemd service
-  service:
-    name: geth
-    state: stopped
-    enabled: false
-  listen: Uninstall Geth
-  when: ansible_os_family|lower != 'darwin'
-
-- name: Remove geth systemd service file
-  become: true
-  file:
-    path: "{{ systemd_dir }}/geth.service"
-    state: absent
-  listen: Uninstall Geth
-  when: ansible_os_family|lower != 'darwin'
-
-- name: Remove geth launchd service file
-  file:
-    path: "{{ launchd_dir }}/com.O1.geth.plist"
-    state: absent
-  become: true
-  listen: Uninstall Geth
-  when: ansible_os_family|lower == 'darwin'
 
 - name: Remove geth user
   user:
