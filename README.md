@@ -5,6 +5,7 @@ Ansible Role :link: Geth
 [![Galaxy Role](https://img.shields.io/ansible/role/41457.svg)](https://galaxy.ansible.com/0x0I/geth)
 [![Downloads](https://img.shields.io/ansible/role/d/41457.svg)](https://galaxy.ansible.com/0x0I/geth)
 [![Build Status](https://travis-ci.org/0x0I/ansible-role-geth.svg?branch=master)](https://travis-ci.org/0x0I/ansible-role-geth)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -194,7 +195,7 @@ Run a full Ethereum node using "fast" sync-mode (only process most recent transa
 License
 -------
 
-Apache, BSD, MIT
+MIT
 
 Author Information
 ------------------
