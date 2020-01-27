@@ -5,12 +5,21 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: kitchen integration test
+  - name: Linting
     task:
       jobs:
-        - name: bundle install
+        - name: ansible-lint & yamllint
+          commands:
+            - checkout
+            - pip install ansible-lint yamllint
+            - ansible-lint -c ./test/lint/.ansible-lint .
+            - yamllint --config-file ./test/lint/yaml-lint.yml .
+  - name: Integration Test
+    task:
+      jobs:
+        - name: Kitchen Integration Test
           commands:
             - checkout
             - sem-version ruby 2.6.3
             - bundle install --deployment --path vendor/bundle
-            - bundle exec kitchen list
+            - bundle exec kitchen test uninstall --concurrency
