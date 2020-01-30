@@ -1,16 +1,4 @@
 ---
-- name: Check for uninstall signal
-  block:
-    - name: Broadcast uninstall signal
-      command: /bin/true
-      notify: Uninstall Geth
-      when: perform_uninstall
-
-    - name: End play following uninstallation
-      meta: end_play
-  when: perform_uninstall
-  ignore_errors: true
-
 - name: Include OS and distribution specific variables.
   include_vars: "{{ item }}"
   with_first_found:
@@ -20,6 +8,19 @@
       skip: true
   tags:
     - always
+
+- name: Check for uninstall signal
+  block:
+    - name: Broadcast uninstall signal
+      command: /bin/true
+      notify: Uninstall Geth
+      when: perform_uninstall
+  always:
+    - name: Flush handlers
+      meta: flush_handlers
+    - name: End play following uninstallation
+      meta: end_play
+  when: perform_uninstall
 
 - name: Set unit [Service] configuration
   set_fact:
