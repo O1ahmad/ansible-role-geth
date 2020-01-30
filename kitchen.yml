@@ -24,6 +24,7 @@ provisioner:
   hosts: test-kitchen
   name: ansible_playbook
   ansible_verbose: true
+  ansible_cfg_path: test/ansible.cfg
   requirements_path: test/requirements-test.yml
 
 verifier:
@@ -33,16 +34,19 @@ platforms:
   - name: centos-7
     driver_config:
       <<: *default_driver_config
-  - name: fedora-28
-    driver_config:
-      <<: *default_driver_config
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable sshd.service
+        - yum -y install python3 python-pip net-tools
+    provisioner:
+      ansible_cfg_path: test/ansible-legacy.cfg
   - name: fedora-30
     driver_config:
       <<: *default_driver_config
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
         - systemctl enable sshd.service
-        - yum -y install python-pip net-tools
+        - yum -y install python3 python-pip net-tools
     provisioner:
       require_pip: true
       ansible_cfg_path: test/ansible.cfg
@@ -52,7 +56,7 @@ platforms:
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
         - systemctl enable sshd.service
-        - yum -y install python-pip net-tools
+        - yum -y install python3 python-pip net-tools
     provisioner:
       require_pip: true
       ansible_cfg_path: test/ansible.cfg
@@ -81,6 +85,8 @@ platforms:
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
         - systemctl enable ssh.service
+    provisioner:
+      ansible_cfg_path: test/ansible-legacy.cfg
   - name: debian-9
     driver_config:
       <<: *default_driver_config
