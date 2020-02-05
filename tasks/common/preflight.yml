@@ -25,7 +25,7 @@
 - name: Set unit [Service] configuration
   set_fact:
     _default_service_unit:
-      ExecStart: "{{ install_dir }}/geth {% if geth_config %}--config {{ config_dir }}/config.toml{% endif %} {{ extra_run_args }}"
+      ExecStart: "{{ install_dir }}/geth {% if geth_config %}--config {{ config_dir }}/config.toml{% endif %} {{ extra_run_args|join(' ') }}"
       User: "{{ geth_user }}"
       Group: "{{ geth_user }}"
       StandardOutput: journal

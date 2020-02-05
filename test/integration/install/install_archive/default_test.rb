@@ -1,4 +1,4 @@
-title "Geth source installation default test suite"
+title "Geth archive installation integration tests"
 
 describe user('test') do
   it { should exist }

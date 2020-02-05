@@ -1,9 +1,9 @@
 ---
-- name: Geth package installation integration test playbook
+- name: Geth archive installation integration test playbook
   hosts: test-kitchen
   roles:
     - role: ansible-role-geth
       vars:
         geth_user: test
-        install_type: package
+        install_type: source
         manage_service: false

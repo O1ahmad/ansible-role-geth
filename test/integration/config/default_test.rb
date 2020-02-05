@@ -1,4 +1,4 @@
-title "Geth TOML configuration default test suite"
+title "Geth configuration integration tests"
 
 describe file('/etc/geth/config.toml') do
   it { should exist }

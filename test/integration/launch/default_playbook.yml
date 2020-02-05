@@ -1,13 +1,16 @@
 ---
-- name: Default playbook for testing Geth setup
+- name: Geth service launch integration test playbook
   hosts: test-kitchen
   roles:
-    - ansible-role-geth
-  vars:
-    install_type: source
-    install_src: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.9.9-01744997.tar.gz
-    manage_service: true
-    geth_config:
-      Node:
-        DataDir: /var/data/geth
-    extra_run_args: '--rinkeby --verbosity 3 --syncmode "full"'
+    - role: ansible-role-geth
+      vars:
+        install_type: source
+        install_src: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.9.9-01744997.tar.gz
+        manage_service: true
+        geth_config:
+          Node:
+            DataDir: /var/data/geth
+        extra_run_args:
+          - --rinkeby
+          - '--verbosity 3'
+          - '--syncmode "full"'
