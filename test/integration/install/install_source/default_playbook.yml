@@ -1,9 +1,0 @@
----
-- name: playbook for installing Geth via client source
-  hosts: test-kitchen
-  roles:
-    - ansible-role-geth
-  vars:
-    geth_user: test
-    install_type: source
-    manage_service: false

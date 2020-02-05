@@ -1,4 +1,4 @@
-title "Geth service management setup default test suite"
+title "Geth service launch integration tests"
 
 describe service('geth') do
   it { should be_installed }

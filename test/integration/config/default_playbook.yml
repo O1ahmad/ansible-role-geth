@@ -1,15 +1,15 @@
 ---
-- name: Default playbook for testing Geth setup
+- name: Geth configuration integration test playbook
   hosts: test-kitchen
   roles:
-    - ansible-role-geth
-  vars:
-    install_type: source
-    manage_service: false
-    geth_config:
-      Eth:
-        SyncMode: full
-        LightPeers: 20
-      Node:
-        HTTPModules: ["net", "web3", "eth", "shh"]
-        DataDir: /var/test
+    - role: ansible-role-geth
+      vars:
+        install_type: source
+        manage_service: false
+        geth_config:
+          Eth:
+            SyncMode: full
+            LightPeers: 20
+          Node:
+            HTTPModules: ["net", "web3", "eth", "shh"]
+            DataDir: /var/test
