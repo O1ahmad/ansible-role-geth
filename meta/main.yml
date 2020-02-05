@@ -3,8 +3,8 @@ galaxy_info:
   author: Ahmad Wilson
   role_name: geth
   description: Geth (Go-Ethereum), a Go-based Ethereum client installation for Linux and MacOs.
-  company: "O1 Labs"
-  license: license (Apache, BSD, MIT)
+  company: "O1.IO"
+  license: license (MIT)
   min_ansible_version: 2.6
   platforms:
     - name: EL
@@ -16,9 +16,8 @@ galaxy_info:
         - stretch
     - name: Fedora
       versions:
-        - 27
-        - 28
-        - 29
+        - 30
+        - 31
     - name: MacOSX
       versions:
         - all
