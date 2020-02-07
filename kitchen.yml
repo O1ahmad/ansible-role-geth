@@ -26,6 +26,7 @@ provisioner:
   ansible_verbose: true
   ansible_cfg_path: test/ansible.cfg
   requirements_path: test/requirements-test.yml
+  idempotency_test: true
 
 verifier:
   name: inspec
@@ -128,6 +129,7 @@ suites:
   - name: uninstall
     provisioner:
       playbook: test/integration/uninstall/default_playbook.yml
+      idempotency_test: false
     verifier:
       inspec_tests:
         - path: test/integration/uninstall

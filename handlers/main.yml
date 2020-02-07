@@ -6,6 +6,7 @@
     name: geth
     state: restarted
   listen: Restart service
+  ignore_errors: true
 
 - name: Stop geth systemd service
   become: true
@@ -15,7 +16,6 @@
     state: stopped
     enabled: false
   listen: Uninstall Geth
-  ignore_errors: true
 
 - name: Remove geth systemd service file
   become: true
