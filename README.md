@@ -103,7 +103,7 @@ _The following variables can be customized to manage the location and content of
 
 Running the `geth` client and API server, either in its RPC, IPC or WS-RPC form, is accomplished utilizing the [systemd](https://www.freedesktop.org/wiki/Software/systemd/) or [launchd](https://www.launchd.info/) service management tools, for Linux and MacOS platforms respectively. Launched as background processes or daemons subject to the configuration and execution potential provided by the underlying management frameworks, the `geth` client and API servers can be set to adhere to system administrative policies right for your environment and organization.
 
-_The following variables can be customized to manage the Geth's execution profile/policy:_
+_The following variables can be customized to manage Geth's execution profile/policy:_
 
 `extra_run_args: <geth-cli-options>` (**default**: see `defaults/main.yml`)
 - list of `geth` commandline arguments to pass to the binary at runtime for customizing launch.
