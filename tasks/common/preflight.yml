@@ -15,7 +15,6 @@
     - name: Broadcast uninstall signal
       command: /bin/true
       notify: Uninstall service
-      when: perform_uninstall
   always:
     - name: Flush handlers
       meta: flush_handlers
