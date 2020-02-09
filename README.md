@@ -55,10 +55,10 @@ _The following variables can be customized to control various aspects of this in
 `geth_user: <service-user-name>` (**default**: *geth*)
 - dedicated service user and group used by `geth` for privilege separation (see [here](https://www.beyondtrust.com/blog/entry/how-separation-privilege-improves-security) for details)
 
-`install_type: <package | source>` (**default**: source)
+`install_type: <package | archive>` (**default**: archive)
 - **package**: ONLY supported by Ubuntu and MacOS, package installation of Geth pulls the lastest package available for either platform from the [Ubuntu PPA](https://launchpad.net/~ethereum/+archive/ubuntu/ethereum/+packages) (Personal Package Archive) or the [Mac Homebrew formulae repository](https://formulae.brew.sh/formula/ethereum).
   - Note that the installation directory is determined by the package management system and currently defaults to `/usr/bin/geth` for Linux and `/usr/local/bin/geth` for MacOS. Attempts to set and execute a package installation on other Linux distros will result in failure due to lack of support.
-- **source**: compatible with both **tar and zip** formats, source installation binaries can be obtained from local and remote compressed archives either from the official download/releases site or by those generated from development or custom versions of the tool.
+- **archive**: compatible with both **tar and zip** formats, archive installation binaries can be obtained from local and remote compressed archives either from the official download/releases site or by those generated from development or custom versions of the tool.
 
 `install_src: <path-or-url-to-src>` (**default**: see `defaults/main.yml`)
 - address of a compressed **tar or zip** package containing `geth` binaries. This method technically supports installation of any available version of `geth`. Links to official versions can be found [here](https://geth.ethereum.org/downloads/).
@@ -103,16 +103,7 @@ _The following variables can be customized to manage the location and content of
 
 Running the `geth` client and API server, either in its RPC, IPC or WS-RPC form, is accomplished utilizing the [systemd](https://www.freedesktop.org/wiki/Software/systemd/) or [launchd](https://www.launchd.info/) service management tools, for Linux and MacOS platforms respectively. Launched as background processes or daemons subject to the configuration and execution potential provided by the underlying management frameworks, the `geth` client and API servers can be set to adhere to system administrative policies right for your environment and organization.
 
-_The following variables can be customized to manage the location of the `geth` service definition and execution profile/policy:_
-
-`manage_service: <true | false>` (**default**: `true`)
-- whether to  manage `geth` service execution using either the systemd or launchd service management tools.
-
-`systemd_dir: </path/to/systemd/service/dir>` (**default**: `/etc/systemd/system`)
-- path on target host where the `geth` **systemd** service file should be copied. **note:** while not advised and unlikely that you'll need or want to modify this location, support for variable definition is supplied to allow for flexible and user-defined organization of service definitions. __ONLY__ relevant on supported Linux platforms.
-
-`launchd_dir: </path/to/launchd/job-definition/dir>` (**default**: `/Library/LaunchDaemons`)
-- path on target host where the `geth` **launchd** job definition file should be copied. **note:** while not advised and unlikely that you'll need or want to modify this location, support for variable definition is supplied to allow for flexible and user-defined organization of job definitions. ONLY relevant on MacOS.
+_The following variables can be customized to manage the Geth's execution profile/policy:_
 
 `extra_run_args: <geth-cli-options>` (**default**: see `defaults/main.yml`)
 - list of `geth` commandline arguments to pass to the binary at runtime for customizing launch.
@@ -121,27 +112,36 @@ Supporting full expression of `geth`'s cli, this variable enables the role of ta
 
   A list of available command-line options can be found [here](https://gist.github.com/0x0I/a06e231d4fd0509ddf3a44f8499a2941).
 
-`custom_unit_properties: <hash-of-systemd-service-settings>` (**default**: `[]`)
-- hash of settings used to customize the `[Service]` unit configuration and execution environment of the *Geth* **systemd** service.
-
 ##### Examples
 
   Connect to either the Ropsten PoW(proof-of-work) or Rinkeby PoA(proof-of-authory) pre-configured test network:
   ```
-  extra_run_args: "--testnet" # PoW
+  extra_run_args:
+    - '--testnet' # PoW
   # ...or...
-  extra_run_args: "--rinkeby" # PoA
+  extra_run_args:
+    - '--rinkeby' # PoA
   ```
 
   Enhance logging and debugging capabilities for troubleshooting issues:
   ```
-  extra_run_args: "--debug --verbosity 5 --trace /tmp/geth.trace"
+  extra_run_args:
+    - --debug
+    - '--verbosity 5'
+    - '--trace /tmp/geth.trace'
   ```
 
   Enable client and server profiling for analytics and testing purposes:
   ```
-  extra_run_args: "--pprof --memprofilerate 1048576 --blockprofilerate 1 --cpuprofile /tmp/geth-cpu-profile"
+  extra_run_args:
+    - --pprof
+    - '--memprofilerate 1048576'
+    - '--blockprofilerate 1'
+    - '--cpuprofile /tmp/geth-cpu-profile'
   ```
+
+`custom_unit_properties: <hash-of-systemd-service-settings>` (**default**: `[]`)
+- hash of settings used to customize the `[Service]` unit configuration and execution environment of the *Geth* **systemd** service.
 
 #### Uninstall
 
@@ -155,7 +155,7 @@ _The following variable(s) can be customized to manage this uninstall process:_
 Dependencies
 ------------
 
-None
+- 0x0i.systemd
 
 Example Playbook
 ----------------
@@ -175,7 +175,8 @@ Launch an Ethereum light client and connect it to the Rinkeby PoA (Proof of Auth
       geth_config:
         Eth:
           SyncMode: light
-      extra_run_args: '--rinkeby'
+      extra_run_args:
+        - --rinkeby
 ```
 
 Run a full Ethereum node using "fast" sync-mode (only process most recent transactions), enabling both the RPC server interface and client miner and overriding the (block) data directory:
@@ -189,7 +190,10 @@ Run a full Ethereum node using "fast" sync-mode (only process most recent transa
           SyncMode: fast
         Node:
           DataDir: /mnt/geth
-      extra_run_args: '--rpc --rpcaddr="0.0.0.0" --mine --miner.threads 16'
+      extra_run_args:
+        - --rpc
+        - '--rpcaddr="0.0.0.0'
+        - '--mine --miner.threads 16'
 ```
 
 License

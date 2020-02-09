@@ -11,13 +11,13 @@
 
 - name: Copy Geth configuration in place
   become: true
+  when: geth_config is defined and geth_config.keys()|length > 0
   template:
     src: "{{ _config_template }}"
     dest: "{{ config_dir }}/config.toml"
     owner: "{{ geth_user }}"
     group: "{{ geth_user }}"
     mode: 0644
-  when: geth_config is defined and geth_config.keys()|length > 0
   notify:
     - Restart service
   tags:
@@ -25,12 +25,12 @@
 
 - name: Ensure creation of data directory based on configuration
   become: true
+  when: geth_config.Node.DataDir is defined and geth_config.Node.DataDir|length > 0
   file:
     path: "{{ geth_config.Node.DataDir }}"
     state: directory
     owner: "{{ geth_user }}"
     group: "{{ geth_user }}"
-  when: geth_config.Node.DataDir is defined and geth_config.Node.DataDir|length > 0
   tags:
     - config
     - data

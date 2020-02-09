@@ -5,5 +5,4 @@
     - role: ansible-role-geth
       vars:
         geth_user: test
-        install_type: source
-        manage_service: false
+        install_type: archive

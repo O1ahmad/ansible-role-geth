@@ -1,5 +1,6 @@
 ---
 - name: Setup Geth systemd unit
+  when: ansible_os_family != "Darwin"
   include_role:
     name: 0x0i.systemd
   vars:
@@ -13,26 +14,25 @@
         Service: "{{ _default_service_unit | combine(custom_unit_properties) }}"
         Install:
           WantedBy: multi-user.target
-  when: ansible_os_family != "Darwin" and manage_service
   tags:
     - launch
 
 - name: Enable and start Geth service
   become: true
+  when: ansible_os_family != "Darwin"
   service:
     name: geth
     state: started
     enabled: true
-  when: ansible_os_family != "Darwin" and manage_service
   tags:
     - launch
 
 - name: Render Geth launchd service plist in place
   become: true
+  when: ansible_os_family == "Darwin"
   template:
     src: "{{ _launchd_template }}"
-    dest: "{{ launchd_dir }}/com.O1.geth.plist"
-  when: ansible_os_family == "Darwin" and manage_service
+    dest: "{{ _launchd_dir }}/com.O1.geth.plist"
   tags:
     - launch
     - darwin

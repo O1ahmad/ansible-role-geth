@@ -21,19 +21,21 @@
     - install
 
 - name: Create installation directory
+  become: true
+  when: install_type == "archive"
   file:
     path: "{{ install_dir }}"
     state: directory
     owner: "{{ geth_user }}"
     group: "{{ geth_user }}"
-  become: true
-  when: install_type == "source"
   tags:
     - install
 
-- name: Extract Geth source
+- name: Extract Geth archive
+  become: true
+  when: install_type == "archive"
   unarchive:
-    src: "{{ install_src }}"
+    src: "{{ install_archive }}"
     dest: "{{ install_dir }}"
     owner: "{{ geth_user }}"
     group: "{{ geth_user }}"
@@ -42,18 +44,18 @@
     extra_opts:
       - --strip-components
       - '1'
-  become: true
-  when: install_type == "source"
   tags:
     - install
-    - source
+    - archive
 
-- name: Add installation dir to system-wide $PATH
-  copy:
-    dest: /etc/profile.d/custom-path.sh
-    content: 'PATH=$PATH:{{ install_dir }}'
-  become: true
-  when: install_type == "source" and ansible_os_family != "Darwin"
+- name: Create a symbolic link to installed binary
+  when: install_type == "archive" and ansible_os_family != "Darwin"
+  file:
+    src: "{{ install_dir }}/geth"
+    dest: "{{ _exe_dir }}/geth"
+    owner: "{{ geth_user }}"
+    group: "{{ geth_user }}"
+    state: link
   tags:
     - install
-    - source
+    - archive

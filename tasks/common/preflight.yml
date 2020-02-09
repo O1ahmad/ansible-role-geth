@@ -10,26 +10,28 @@
     - always
 
 - name: Check for uninstall signal
+  when: perform_uninstall
   block:
     - name: Broadcast uninstall signal
       command: /bin/true
-      notify: Uninstall Geth
+      notify: Uninstall service
       when: perform_uninstall
   always:
     - name: Flush handlers
       meta: flush_handlers
     - name: End play following uninstallation
       meta: end_play
-  when: perform_uninstall
+  tags:
+    - preflight
 
 - name: Set unit [Service] configuration
+  when: ansible_os_family != "Darwin"
   set_fact:
     _default_service_unit:
-      ExecStart: "{{ install_dir }}/geth {% if geth_config %}--config {{ config_dir }}/config.toml{% endif %} {{ extra_run_args|join(' ') }}"
+      ExecStart: "{{ _exe_dir }}/geth {% if geth_config %}--config {{ config_dir }}/config.toml{% endif %} {{ extra_run_args|join(' ') }}"
       User: "{{ geth_user }}"
       Group: "{{ geth_user }}"
       StandardOutput: journal
       StandardError: inherit
-  when: ansible_os_family != "Darwin" and manage_service
   tags:
     - preflight

@@ -4,9 +4,8 @@
   roles:
     - role: ansible-role-geth
       vars:
-        install_type: source
+        install_type: archive
         install_src: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.9.9-01744997.tar.gz
-        manage_service: true
         geth_config:
           Node:
             DataDir: /var/data/geth

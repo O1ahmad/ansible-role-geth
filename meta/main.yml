@@ -5,7 +5,7 @@ galaxy_info:
   description: Geth (Go-Ethereum), a Go-based Ethereum client installation for Linux and MacOs.
   company: "O1.IO"
   license: license (MIT)
-  min_ansible_version: 2.6
+  min_ansible_version: 2.5
   platforms:
     - name: EL
       versions:
@@ -26,9 +26,10 @@ galaxy_info:
         - xenial
         - bionic
         - cosmic
-
   galaxy_tags:
     - blockchain
     - ethereum
     - mining
     - crypto
+dependencies:
+  - 0x0i.systemd

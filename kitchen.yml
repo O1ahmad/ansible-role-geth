@@ -23,6 +23,8 @@ transport:
 provisioner:
   hosts: test-kitchen
   name: ansible_playbook
+  require_pip: true
+  ansible_version: 2.9.4
   ansible_verbose: true
   ansible_cfg_path: test/ansible.cfg
   requirements_path: test/requirements-test.yml
@@ -38,7 +40,7 @@ platforms:
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
         - systemctl enable sshd.service
-        - yum -y install python3 python-pip net-tools
+        - yum -y install python-pip net-tools
     provisioner:
       ansible_cfg_path: test/ansible-legacy.cfg
   - name: fedora-30
@@ -47,20 +49,14 @@ platforms:
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
         - systemctl enable sshd.service
-        - yum -y install python3 python-pip net-tools
-    provisioner:
-      require_pip: true
-      ansible_cfg_path: test/ansible.cfg
+        - dnf -y install python-pip net-tools
   - name: fedora-31
     driver_config:
       <<: *default_driver_config
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
         - systemctl enable sshd.service
-        - yum -y install python3 python-pip net-tools
-    provisioner:
-      require_pip: true
-      ansible_cfg_path: test/ansible.cfg
+        - dnf -y install python-pip net-tools
   - name: ubuntu-16.04
     driver_config:
       <<: *default_driver_config
@@ -100,6 +96,7 @@ suites:
   - name: install_package
     provisioner:
       playbook: test/integration/install/install_package/default_playbook.yml
+      ansible_extra_flags: '--skip-tags=config,launch'
     verifier:
       inspec_tests:
         - path: test/integration/install/install_package
@@ -111,6 +108,7 @@ suites:
   - name: install_archive
     provisioner:
       playbook: test/integration/install/install_archive/default_playbook.yml
+      ansible_extra_flags: '--skip-tags=config,launch'
     verifier:
       inspec_tests:
         - path: test/integration/install/install_archive

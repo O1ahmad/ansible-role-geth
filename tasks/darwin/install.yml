@@ -1,19 +1,19 @@
 ---
 - name: Tap ethereum formula repository
+  when: install_type == "package"
   homebrew_tap:
     name: ethereum/ethereum
     state: present
-  when: install_type == "package"
   tags:
     - install
     - package
     - darwin
 
 - name: Install geth homebrew package
+  when: install_type == "package"
   homebrew:
     name: ethereum
     state: present
-  when: install_type == "package"
   tags:
     - install
     - package
