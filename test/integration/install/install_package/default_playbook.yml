@@ -6,4 +6,3 @@
       vars:
         geth_user: test
         install_type: package
-        manage_service: false

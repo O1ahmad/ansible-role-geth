@@ -4,8 +4,7 @@
   roles:
     - role: ansible-role-geth
       vars:
-        install_type: source
-        manage_service: false
+        install_type: archive
         geth_config:
           Eth:
             SyncMode: full

@@ -5,7 +5,6 @@
     - role: ansible-role-geth
       vars:
         geth_user: test
-        manage_service: true
         perform_uninstall: false
     - role: ansible-role-geth
       vars:

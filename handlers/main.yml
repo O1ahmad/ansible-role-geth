@@ -1,5 +1,5 @@
 ---
-- name: Restart geth service
+- name: Restart Geth service
   become: true
   when: not perform_uninstall and ansible_os_family|lower != 'darwin'
   service:
@@ -8,94 +8,95 @@
   listen: Restart service
   ignore_errors: true
 
-- name: Stop geth systemd service
+- name: Stop Geth systemd service
   become: true
   when: ansible_os_family|lower != 'darwin'
   service:
     name: geth
     state: stopped
     enabled: false
-  listen: Uninstall Geth
+  listen: Uninstall service
+  ignore_errors: true
 
-- name: Remove geth systemd service file
+- name: Remove Geth systemd service file
   become: true
   file:
-    path: "{{ systemd_dir }}/geth.service"
+    path: "{{ _systemd_dir }}/geth.service"
     state: absent
-  listen: Uninstall Geth
+  listen: Uninstall service
 
-- name: Remove geth launchd service file
+- name: Remove Geth launchd service file
   become: true
   when: ansible_os_family|lower == 'darwin'
   file:
-    path: "{{ launchd_dir }}/com.O1.geth.plist"
+    path: "{{ _launchd_dir }}/com.O1.geth.plist"
     state: absent
-  listen: Uninstall Geth
+  listen: Uninstall service
 
-- name: Uninstall geth service package
+- name: Uninstall Geth service package
   become: true
   when: ansible_os_family|lower != 'darwin'
   package:
     name: ethereum
     state: absent
-  listen: Uninstall Geth
+  listen: Uninstall service
 
-- name: Uninstall geth homebrew-package
+- name: Uninstall Geth homebrew-package
   become: true
   when: ansible_os_family|lower == 'darwin'
   homebrew:
     name: ethereum
     state: absent
-  listen: Uninstall Geth
+  listen: Uninstall service
 
-- name: Uninstall geth apt-repo
+- name: Uninstall Geth apt-repo
   become: true
   when: ansible_os_family|lower == 'debian'
   apt_repository:
     repo: 'ppa:ethereum/ethereum'
     state: absent
-  listen: Uninstall Geth
+  listen: Uninstall service
 
-- name: Uninstall geth homebrew-tap
+- name: Uninstall Geth homebrew-tap
   become: true
   when: ansible_os_family|lower == 'darwin'
   homebrew_tap:
     name: ethereum/ethereum
     state: absent
-  listen: Uninstall Geth
+  listen: Uninstall service
 
-- name: Remove geth install dir
+- name: Remove Geth install dir
   become: true
   file:
     path: "{{ install_dir }}"
     state: absent
-  listen: Uninstall Geth
+  listen: Uninstall service
 
-- name: Remove geth config dir
+- name: Remove Geth config dir
   become: true
   file:
     path: "{{ config_dir }}"
     state: absent
-  listen: Uninstall Geth
+  listen: Uninstall service
 
-- name: Remove geth data dir
+- name: Remove Geth data dir
   become: true
   file:
     path: "{{ geth_config.Node.DataDir }}"
     state: absent
-  listen: Uninstall Geth
+  listen: Uninstall service
 
-- name: Remove geth user
+- name: Remove Geth user
   become: true
   user:
     name: "{{ geth_user }}"
     state: absent
     remove: true
-  listen: Uninstall Geth
+  listen: Uninstall service
 
-- name: Remove geth group
+- name: Remove Geth group
   become: true
   group:
     name: "{{ geth_user }}"
     state: absent
-  listen: Uninstall Geth
+  listen: Uninstall service

@@ -1,40 +1,43 @@
 ---
 - name: Check install_type for unsupported package option
+  when: install_type == "package" and ansible_os_family == "Debian" and ansible_distribution != "Ubuntu"
   fail:
     msg: "Geth installation by OS system package is not supported on {{ ansible_os_family }}!"
-  when: install_type == "package" and ansible_os_family == "Debian" and ansible_distribution != "Ubuntu"
   tags:
     - install
     - package
     - debian
 
 - name: Update apt cache
-  apt: update_cache=yes cache_valid_time=86400
-  changed_when: false
+  become: true
   when: install_type == "package"
+  apt:
+    update_cache: yes
+    cache_valid_time: 86400
+  changed_when: false
   tags:
     - install
     - package
     - debian
 
 - name: Add PPA for Ethereum
+  become: true
+  when: install_type == "package" and ansible_distribution == "Ubuntu"
   apt_repository:
     repo: 'ppa:ethereum/ethereum'
     state: present
     update_cache: true
-  become: true
-  when: install_type == "package" and ansible_distribution == "Ubuntu"
   tags:
     - install
     - package
     - debian
 
 - name: Install geth package
+  become: true
+  when: install_type == "package"
   package:
     name: ethereum
     state: present
-  become: true
-  when: install_type == "package"
   tags:
     - install
     - package

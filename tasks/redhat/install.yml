@@ -1,8 +1,8 @@
 ---
 - name: Check install_type for unsupported package option
+  when: install_type == "package" and ansible_os_family != "Debian"
   fail:
     msg: "Geth installation by OS system package is not supported on {{ ansible_os_family }}!"
-  when: install_type == "package" and ansible_os_family != "Debian"
   tags:
     - install
     - package
