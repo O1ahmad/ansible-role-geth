@@ -29,6 +29,8 @@ provisioner:
   ansible_cfg_path: test/ansible.cfg
   requirements_path: test/requirements-test.yml
   idempotency_test: true
+  require_chef_for_busser: false
+  require_ruby_for_busser: false
 
 verifier:
   name: inspec
