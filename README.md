@@ -3,12 +3,11 @@
 Ansible Role :link: Geth
 =========
 [![Galaxy Role](https://img.shields.io/ansible/role/41457.svg)](https://galaxy.ansible.com/0x0I/geth)
-[![Downloads](https://img.shields.io/ansible/role/d/41457.svg)](https://galaxy.ansible.com/0x0I/geth)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/0x0I/ansible-role-geth?color=yellow)
+[![Downloads](https://img.shields.io/ansible/role/d/41457.svg?color=lightgrey)](https://galaxy.ansible.com/0x0I/geth)
 [![Build Status](https://travis-ci.org/0x0I/ansible-role-geth.svg?branch=master)](https://travis-ci.org/0x0I/ansible-role-geth)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
   - [Supported Platforms](#supported-platforms)
   - [Requirements](#requirements)
@@ -21,7 +20,6 @@ Ansible Role :link: Geth
   - [Example Playbook](#example-playbook)
   - [License](#license)
   - [Author Information](#author-information)
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 Ansible role that installs, configures and runs [Geth](https://geth.ethereum.org/): a command-line interface and API server for operating an ethereum node.
 
@@ -57,10 +55,10 @@ _The following variables can be customized to control various aspects of this in
 
 `install_type: <package | archive>` (**default**: archive)
 - **package**: ONLY supported by Ubuntu and MacOS, package installation of Geth pulls the lastest package available for either platform from the [Ubuntu PPA](https://launchpad.net/~ethereum/+archive/ubuntu/ethereum/+packages) (Personal Package Archive) or the [Mac Homebrew formulae repository](https://formulae.brew.sh/formula/ethereum).
-  - Note that the installation directory is determined by the package management system and currently defaults to `/usr/bin/geth` for Linux and `/usr/local/bin/geth` for MacOS. Attempts to set and execute a package installation on other Linux distros will result in failure due to lack of support.
+  - Note that the installation directory is determined by the package management system and currently defaults to `/usr/bin/geth` for Linux and `/usr/local/bin/geth` for MacOS.
 - **archive**: compatible with both **tar and zip** formats, archive installation binaries can be obtained from local and remote compressed archives either from the official download/releases site or by those generated from development or custom versions of the tool.
 
-`install_src: <path-or-url-to-src>` (**default**: see `defaults/main.yml`)
+`install_archive: <path-or-url-to-archive>` (**default**: see `defaults/main.yml`)
 - address of a compressed **tar or zip** package containing `geth` binaries. This method technically supports installation of any available version of `geth`. Links to official versions can be found [here](https://geth.ethereum.org/downloads/).
 
 `install_dir: </path/to/installation/dir>` (**default**: see `defaults/main.yml | vars/...`)
