@@ -58,7 +58,7 @@ _The following variables can be customized to control various aspects of this in
   - Note that the installation directory is determined by the package management system and currently defaults to `/usr/bin/geth` for Linux and `/usr/local/bin/geth` for MacOS.
 - **archive**: compatible with both **tar and zip** formats, archive installation binaries can be obtained from local and remote compressed archives either from the official download/releases site or by those generated from development or custom versions of the tool.
 
-`install_archive: <path-or-url-to-archive>` (**default**: see `defaults/main.yml`)
+`archive_url: <path-or-url-to-archive>` (**default**: see `defaults/main.yml`)
 - address of a compressed **tar or zip** package containing `geth` binaries. This method technically supports installation of any available version of `geth`. Links to official versions can be found [here](https://geth.ethereum.org/downloads/).
 
 `install_dir: </path/to/installation/dir>` (**default**: see `defaults/main.yml | vars/...`)
