@@ -2,7 +2,7 @@
 geth_user: geth
 
 install_type: archive
-install_archive: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.9.9-01744997.tar.gz
+archive_url: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.9.9-01744997.tar.gz
 install_dir: /opt/geth
 
 _config_template: config.toml.j2
