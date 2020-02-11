@@ -35,7 +35,7 @@
   become: true
   when: install_type == "archive"
   unarchive:
-    src: "{{ install_archive }}"
+    src: "{{ archive_url }}"
     dest: "{{ install_dir }}"
     owner: "{{ geth_user }}"
     group: "{{ geth_user }}"
