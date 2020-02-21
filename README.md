@@ -1,6 +1,7 @@
+<p><img src="https://code.benco.io/icon-collection/logos/ansible.svg" alt="ansible logo" title="ansible" align="left" height="60" /></p>
 <p><img src="https://retohercules.com/images/ethereum-png-11.png" alt="ethereum logo" title="ethereum" align="right" height="80" /></p>
 
-Ansible Role :link: Geth
+Ansible Role :computer: :link: Geth
 =========
 [![Galaxy Role](https://img.shields.io/ansible/role/41457.svg)](https://galaxy.ansible.com/0x0I/geth)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/0x0I/ansible-role-geth?color=yellow)
