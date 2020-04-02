@@ -49,6 +49,7 @@
     - archive
 
 - name: Create a symbolic link to installed binary
+  become: true
   when: install_type == "archive" and ansible_os_family != "Darwin"
   file:
     src: "{{ install_dir }}/geth"
