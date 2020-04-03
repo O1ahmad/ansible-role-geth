@@ -191,6 +191,7 @@ Run a full Ethereum node using "fast" sync-mode (only process most recent transa
           DataDir: /mnt/geth
       extra_run_args:
         - --rpc
+        - --nousb
         - '--rpcaddr="12.34.56.789"'
         - '--mine --miner.threads 16'
 ```
