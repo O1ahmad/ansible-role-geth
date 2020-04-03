@@ -5,10 +5,10 @@
     - role: ansible-role-geth
       vars:
         install_type: archive
-        install_src: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.9.9-01744997.tar.gz
+        archive_url: https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.9.9-01744997.tar.gz
         geth_config:
           Node:
-            DataDir: /var/data/geth
+            DataDir: /mnt/geth
         extra_run_args:
           - --rinkeby
           - '--verbosity 3'

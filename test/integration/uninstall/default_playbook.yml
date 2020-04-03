@@ -4,9 +4,9 @@
   roles:
     - role: ansible-role-geth
       vars:
-        geth_user: test
+        geth_user: geth
         perform_uninstall: false
     - role: ansible-role-geth
       vars:
-        geth_user: test
+        geth_user: geth
         perform_uninstall: true
