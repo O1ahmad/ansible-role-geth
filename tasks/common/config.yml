@@ -25,9 +25,8 @@
 
 - name: Ensure creation of data directory based on configuration
   become: true
-  when: geth_config.Node.DataDir is defined and geth_config.Node.DataDir|length > 0
   file:
-    path: "{{ geth_config.Node.DataDir }}"
+    path: "{{ geth_config.Node.DataDir | default(default_data_dir) }}"
     state: directory
     owner: "{{ geth_user }}"
     group: "{{ geth_user }}"

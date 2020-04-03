@@ -8,19 +8,16 @@ install_dir: /opt/geth
 _config_template: config.toml.j2
 config_dir: /etc/geth
 
-geth_config:
-  Eth:
-    SyncMode: fast
-  Node:
-    DataDir: /var/geth
+geth_config: {}
+
+default_data_dir: /var/data/geth
 
 _systemd_dir: /etc/systemd/system
 _launchd_template: com.O1.geth.plist.j2
 _launchd_dir: /Library/LaunchAgents
 
 _exe_dir: /usr/bin
-extra_run_args:
-  - '--rpc'
+extra_run_args: []
 custom_unit_properties: {}
 
 perform_uninstall: false
