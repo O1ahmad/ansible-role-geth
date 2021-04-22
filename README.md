@@ -1,5 +1,5 @@
 <p><img src="https://code.benco.io/icon-collection/logos/ansible.svg" alt="ansible logo" title="ansible" align="left" height="60" /></p>
-<p><img src="https://retohercules.com/images/ethereum-png-11.png" alt="ethereum logo" title="ethereum" align="right" height="80" /></p>
+<p><img src="https://www.logo.wine/a/logo/Ethereum/Ethereum-Icon-Purple-Logo.wine.svg" alt="ethereum logo" title="ethereum" align="right" height="120" /></p>
 
 Ansible Role :computer: :link: Geth
 =========
