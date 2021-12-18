@@ -116,7 +116,7 @@ Supporting full expression of `geth`'s cli, this variable enables the role of ta
   Connect to either the Ropsten PoW(proof-of-work) or Rinkeby PoA(proof-of-authory) pre-configured test network:
   ```
   extra_run_args:
-    - '--testnet' # PoW
+    - '--ropsten' # PoW
   # ...or...
   extra_run_args:
     - '--rinkeby' # PoA
