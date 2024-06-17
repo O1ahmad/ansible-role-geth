@@ -3,10 +3,8 @@
 
 Ansible Role :computer: :link: Geth
 =========
-[![Galaxy Role](https://img.shields.io/ansible/role/41457.svg)](https://galaxy.ansible.com/0x0I/geth)
+[![Galaxy Role](https://img.shields.io/ansible/role/d/0x0i/geth)](https://galaxy.ansible.com/0x0I/geth)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/0x0I/ansible-role-geth?color=yellow)
-[![Downloads](https://img.shields.io/ansible/role/d/41457.svg?color=lightgrey)](https://galaxy.ansible.com/0x0I/geth)
-[![Build Status](https://travis-ci.org/0x0I/ansible-role-geth.svg?branch=master)](https://travis-ci.org/0x0I/ansible-role-geth)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
 
 **Table of Contents**
